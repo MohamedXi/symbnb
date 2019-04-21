@@ -2,100 +2,77 @@
 
 {% block title %}Create a new add{% endblock %}
 
+{% form_theme form _self %}
+
 {% block body %}
     <div class="container py-5">
         {{ form_start(form) }}
-        <div class="row">
-            <div class="col-12 col-md-6">
-
-                <!-- First name -->
-                <div class="form-group">
-
-                    <!-- Label -->
-                    {{ form_label(form.title) }}
-
-                    <!-- Input -->
-                    {{ form_widget(form.title, {'attr': {'class': 'form-control', 'placeholder': 'Enter the title of the ad'}}) }}
-
-                </div>
-
-            </div>
-            <div class="col-12 col-md-6">
-
-                <!-- Last name -->
-                <div class="form-group">
-
-                    <!-- Label -->
-                    {{ form_label(form.price) }}
-
-                    <!-- Input -->
-                    {{ form_widget(form.price, {'attr': {'class': 'form-control', 'placeholder': 'Enter the price of the ad'}}) }}
-
-                </div>
-
-            </div>
-            <div class="col-12">
-
-                <!-- Email address -->
-                <div class="form-group">
-
-                    <!-- Label -->
-                    {{ form_label(form.introduction) }}
-
-                    <!-- Form text -->
-                    <small class="form-text text-muted mb-2">
-                        This contact will be shown to others publicly, so choose it carefully.
-                    </small>
-
-                    <!-- Input -->
-                    {{ form_widget(form.introduction, {'attr': {'class': 'form-control', 'placeholder': 'Enter the introduction of the ad'}}) }}
-
-                </div>
-
-            </div>
-            <div class="col-12 col-md-6">
-
-                <!-- Phone -->
-                <div class="form-group">
-
-                    <!-- Label -->
-                    {{ form_label(form.coverImage) }}
-
-                    <!-- Input -->
-                    {{ form_widget(form.coverImage, {'attr': {'class': 'form-control', 'placeholder': 'Enter the image cover of the ad'}}) }}
-
-                </div>
-
-            </div>
-            <div class="col-12 col-md-6">
-
-                <!-- Birthday -->
-                <div class="form-group">
-
-                    <!-- Label -->
-                    {{ form_label(form.rooms) }}
-
-                    <!-- Input -->
-                    {{ form_widget(form.rooms, {'attr': {'class': 'form-control', 'placeholder': 'Enter the number of room'}}) }}
-
-                </div>
-
-            </div>
-            <div class="col-12">
-
-                <!-- Birthday -->
-                <div class="form-group">
-
-                    <!-- Label -->
-                    {{ form_label(form.content) }}
-
-                    <!-- Input -->
-                    {{ form_widget(form.content, {'attr': {'class': 'form-control', 'placeholder': 'Enter the number of room'}}) }}
-
-                </div>
-
-            </div>
-        </div>
+        {{ form_widget(form) }}
+        <button type="submit" id="add-ad" class="btn btn-primary mb-2">Submit</button>
         {{ form_end(form) }}
     </div>
+{% endblock %}
+
+{% block _annonce_images_widget %}
+    <p>You can add your images here</p>
+    {{ form_widget(form) }}
+
+    <input type="hidden" id="widgets-counter" value="0" />
+
+    <div class="class">
+        <button type="button" id="add-image" class="btn btn-primary">add an image</button>
+    </div>
+{% endblock %}
+
+{% block _annonce_images_entry_row %}
+    {{ form_widget(form) }}
+{% endblock %}
+
+{% block _annonce_images_entry_widget %}
+    <div class="form-group" id="block_{{ id }}">
+        <div class="row">
+            <div class="col-10">
+                <div class="row">
+                    <div class="col">
+                        {{ form_widget(form.url) }}
+                    </div>
+                    <div class="col">
+                        {{ form_widget((form.caption)) }}
+                    </div>
+                </div>
+            </div>
+            <div class="col-2">
+                <button type="button" data-action="delete" data-target="#block_{{ id }}" class="btn btn-danger rounded-circle"><i class="fal fa-trash-alt"></i></button>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    <script type="text/javascript">
+        $('#add-image').click(function () {
+            // get the next field
+            const index = +$('#wwidgets-counter').val();
+
+            // get the prototype of enter
+            const tmpl = $('#annonce_images').data('prototype').replace(/__name__/g, index);
+
+            // set the code in the prototype
+            $('#annonce_images').append(tmpl);
+
+            $('#widgets-counter').val(index + 1);
+
+            // Manage the delete buttons
+            handleDeleteButtons();
+        });
+        
+        function handleDeleteButtons() {
+            $('button[data-action="delete"]').click(function() {
+                const target = this.dataset.target;
+                $(target).remove();
+            });
+        }
+
+        handleDeleteButtons();
+    </script>
 {% endblock %}

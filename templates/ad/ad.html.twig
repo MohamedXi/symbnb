@@ -28,26 +28,26 @@
                     <div class="row mt-5">
                         {% for ad in ads %}
 
-                            {% set url = path('ads_show', {'slug': ad.slug}) %}
+                            {% set adUrl = path('ads_show', {'slug': ad.slug}) %}
 
                         <div class="col-md-4">
                             <div class="card mb-3">
                                 <div class="card-header text-center">
                                     <span class="font-weight-bold">{{ ad.price }}&euro;/night</span> | {{ ad.rooms }} bedrooms
                                 </div>
-                                <a href="{{ url }}">
+                                <a href="{{ adUrl }}">
                                     <img src="{{ ad.coverImage }}" alt="Home image"
-                                         style="height: 200px; width: 100%; display: block">
+                                         style="height: 50%; width: 100%; display: block">
                                 </a>
                                 <div class="card-body">
-                                    <a class="text-decoration-none text-dark" href="{{ url }}">
+                                    <a class="text-decoration-none text-dark" href="{{ adUrl }}">
                                         <h5 class="card-title">{{ ad.title }}</h5>
                                     </a>
                                     <h6 class="card-subtitle mb-2 text-muted">No reviews yet</h6>
-                                    <a class="text-decoration-none text-black-50" href="{{ url }}">
+                                    <a class="text-decoration-none text-black-50" href="{{ adUrl }}">
                                         <p class="card-text">{{ ad.introduction }}</p>
                                     </a>
-                                    <a href="{{ url }}" class="card-link">See more</a>
+                                    <a href="{{ path('ads_show', {'slug': ad.slug}) }}" class="card-link">See more</a>
                                     <a href="#" class="card-link">Share to friend</a>
                                 </div>
                             </div>

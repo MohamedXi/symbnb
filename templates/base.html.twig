@@ -3,46 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <title>{% block title %}Welcome!{% endblock %} | Symbnb</title>
-    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-Bx4pytHkyTDy3aJKjGkGoHPt3tvv6zlwwjc3iqN7ktaiEMLDPqLSZYts2OjKcBx1" crossorigin="anonymous">    <link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.8.1/css/all.css"
+          integrity="sha384-Bx4pytHkyTDy3aJKjGkGoHPt3tvv6zlwwjc3iqN7ktaiEMLDPqLSZYts2OjKcBx1" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css"/>
     <link rel="stylesheet" type="text/css" href="/css/app.css"/>
-    <link rel="stylesheet" type="text/css" href="/css/baguetteBox.min.css"/>
     {% block stylesheets %}{% endblock %}
 </head>
 <body>
 {# ------ navbar ------ #}
 <div class="container-fluid bg-light">
-    <header class="container bg-light">
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <a class="navbar-brand" href="{{ path('homepage') }}">Navbar</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-                    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav mr-auto">
-                    <li class="nav-item active">
-                        <a class="nav-link" href="{{ path('homepage') }}">Home</a>
-                    </li>
-                    <li class="nav-item active">
-                        <a class="nav-link" href="{{ path('ad_index') }}">Our ads</a>
-                    </li>
-                    <li class="nav-item active">
-                        <a class="nav-link" href="{{ path('ads_create') }}">Add new ad</a>
-                    </li>
-                </ul>
-                <ul class="navbar-nav ml-auto">
-                    <li class="nav-item">
-                        <a href="#" class="nav-link">My account</a>
-                    </li>
-                </ul>
-            </div>
-        </nav>
-    </header>
+    {% include 'partials/header.html.twig' %}
 </div>
+{% for label, messages in app.flashes %}
+    <div class="container py-5">
+        <div class="alert alert-{{ label }}">
+            {% for message in messages %}
+                <p>
+                    {{ message | striptags }}
+                </p>
+            {% endfor %}
+        </div>
+    </div>
+{% endfor %}
 {% block body %}{% endblock %}
+{% include 'partials/footer.html.twig' %}
 
-<script type="text/javascript" src="/js/app.js"></script>
 <script type="text/javascript" src="/js/jquery-3.2.1.slim.min.js"></script>
 <script type="text/javascript" src="/js/popper.min.js"></script>
 <script type="text/javascript" src="/js/bootstrap.min.js"></script>
