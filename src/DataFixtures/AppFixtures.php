@@ -19,7 +19,7 @@ class AppFixtures extends Fixture
             $ad = new Ad(); // Ad variable
 
             $title = $faker->sentence();
-            $coverImage = $faker->imageUrl('1000, 350');
+            $coverImage = $faker->imageUrl($width = 640);
             $intro = $faker->paragraph(2);
             $content = '<p>' . join('</p><p>', $faker->paragraphs(5)) . '</p>';
 

@@ -11,6 +11,8 @@ use Symfony\Bridge\Doctrine\RegistryInterface;
  * @method Ad|null findOneBy(array $criteria, array $orderBy = null)
  * @method Ad[]    findAll()
  * @method Ad[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ * @method findBySlug()
+ * @method findOneBySlug()
  */
 class AdRepository extends ServiceEntityRepository
 {
