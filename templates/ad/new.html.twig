@@ -3,7 +3,99 @@
 {% block title %}Create a new add{% endblock %}
 
 {% block body %}
-  {{ form_start(form) }}
+    <div class="container py-5">
+        {{ form_start(form) }}
+        <div class="row">
+            <div class="col-12 col-md-6">
 
-  {{ form_end(form) }}
+                <!-- First name -->
+                <div class="form-group">
+
+                    <!-- Label -->
+                    {{ form_label(form.title) }}
+
+                    <!-- Input -->
+                    {{ form_widget(form.title, {'attr': {'class': 'form-control', 'placeholder': 'Enter the title of the ad'}}) }}
+
+                </div>
+
+            </div>
+            <div class="col-12 col-md-6">
+
+                <!-- Last name -->
+                <div class="form-group">
+
+                    <!-- Label -->
+                    {{ form_label(form.price) }}
+
+                    <!-- Input -->
+                    {{ form_widget(form.price, {'attr': {'class': 'form-control', 'placeholder': 'Enter the price of the ad'}}) }}
+
+                </div>
+
+            </div>
+            <div class="col-12">
+
+                <!-- Email address -->
+                <div class="form-group">
+
+                    <!-- Label -->
+                    {{ form_label(form.introduction) }}
+
+                    <!-- Form text -->
+                    <small class="form-text text-muted mb-2">
+                        This contact will be shown to others publicly, so choose it carefully.
+                    </small>
+
+                    <!-- Input -->
+                    {{ form_widget(form.introduction, {'attr': {'class': 'form-control', 'placeholder': 'Enter the introduction of the ad'}}) }}
+
+                </div>
+
+            </div>
+            <div class="col-12 col-md-6">
+
+                <!-- Phone -->
+                <div class="form-group">
+
+                    <!-- Label -->
+                    {{ form_label(form.coverImage) }}
+
+                    <!-- Input -->
+                    {{ form_widget(form.coverImage, {'attr': {'class': 'form-control', 'placeholder': 'Enter the image cover of the ad'}}) }}
+
+                </div>
+
+            </div>
+            <div class="col-12 col-md-6">
+
+                <!-- Birthday -->
+                <div class="form-group">
+
+                    <!-- Label -->
+                    {{ form_label(form.rooms) }}
+
+                    <!-- Input -->
+                    {{ form_widget(form.rooms, {'attr': {'class': 'form-control', 'placeholder': 'Enter the number of room'}}) }}
+
+                </div>
+
+            </div>
+            <div class="col-12">
+
+                <!-- Birthday -->
+                <div class="form-group">
+
+                    <!-- Label -->
+                    {{ form_label(form.content) }}
+
+                    <!-- Input -->
+                    {{ form_widget(form.content, {'attr': {'class': 'form-control', 'placeholder': 'Enter the number of room'}}) }}
+
+                </div>
+
+            </div>
+        </div>
+        {{ form_end(form) }}
+    </div>
 {% endblock %}
