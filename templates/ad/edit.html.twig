@@ -2,7 +2,7 @@
 
 {% block title %}Edit an add{% endblock %}
 
-{% form_theme form _self %}
+{% form_theme form 'ad/_collection.html.twig' %}
 
 {% block body %}
     <div class="container py-5">
@@ -13,65 +13,6 @@
     </div>
 {% endblock %}
 
-{% block _annonce_images_widget %}
-    <p>You can add your images here</p>
-    {{ form_widget(form) }}
-
-    <input type="hidden" id="widgets-counter" value="0"/>
-
-    <div class="class">
-        <button type="button" id="add-image" class="btn btn-primary">add an image</button>
-    </div>
-{% endblock %}
-
-{% block _annonce_images_entry_row %}
-    {{ form_widget(form) }}
-{% endblock %}
-
-{% block _annonce_images_entry_widget %}
-    <div class="form-group" id="block_{{ id }}">
-        <div class="row">
-            <div class="col-11">
-                <div class="row">
-                    <div class="col">
-                        {{ form_widget(form.url) }}
-                    </div>
-                    <div class="col">
-                        {{ form_widget((form.caption)) }}
-                    </div>
-                </div>
-            </div>
-            <button type="button" data-action="delete" data-target="#block_{{ id }}"
-                    class="btn btn-danger col-1"><i class="fal fa-trash-alt"></i></button>
-        </div>
-    </div>
-{% endblock %}
-
 {% block javascripts %}
-    <script type="text/javascript">
-        $('#add-image').click(function () {
-            // get the next field
-            const index = +$('#widgets-counter').val();
-
-            // get the prototype of enter
-            const tmpl = $('#annonce_images').data('prototype').replace(/__name__/g, index);
-
-            // set the code in the prototype
-            $('#annonce_images').append(tmpl);
-
-            $('#widgets-counter').val(index + 1);
-
-            // Manage the delete buttons
-            handleDeleteButtons();
-        });
-
-        function handleDeleteButtons() {
-            $('button[data-action="delete"]').click(function () {
-                const target = this.dataset.target;
-                $(target).remove();
-            });
-        }
-
-        handleDeleteButtons();
-    </script>
+    <script type="text/javascript" src="{{ asset('js/ad.js') }}"></script>
 {% endblock %}

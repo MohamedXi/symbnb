@@ -28,7 +28,7 @@ class Ad
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Assert\Length(min=10, max=255, minMessage="The title must than more 10 characters", maxMessage="The title don't must than more 10 characters")
+     * @Assert\Length(min=10, max=255, minMessage="The caption must than more 10 characters", maxMessage="The caption don't must than more 255 characters")
      */
     private $title;
 
@@ -68,6 +68,7 @@ class Ad
 
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\Image", mappedBy="ad", orphanRemoval=true)
+     * @Assert\Valid()
      */
     private $images;
 
