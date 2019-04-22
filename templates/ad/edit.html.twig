@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Create a new add{% endblock %}
+{% block title %}Edit an add{% endblock %}
 
 {% form_theme form _self %}
 
@@ -8,7 +8,7 @@
     <div class="container py-5">
         {{ form_start(form) }}
         {{ form_widget(form) }}
-        <button type="submit" id="add-ad" class="btn btn-primary mb-2">Submit</button>
+        <button type="submit" id="add-ad" class="btn btn-primary mb-2">Save</button>
         {{ form_end(form) }}
     </div>
 {% endblock %}

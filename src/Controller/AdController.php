@@ -30,6 +30,7 @@ class AdController extends AbstractController
         ]);
     }
 
+
     /**
      * Allow to create an ad
      *
@@ -42,7 +43,7 @@ class AdController extends AbstractController
     {
         $ad = new Ad();
 
-        // Build a form
+        // Function to build an add ad form and send it
         $form = $this->createForm(AnnonceType::class, $ad);
 
         $form->handleRequest($request);
@@ -71,6 +72,7 @@ class AdController extends AbstractController
         ]);
     }
 
+    // Function to show an ad
 
     /**
      * Allow to display an ad
@@ -82,6 +84,48 @@ class AdController extends AbstractController
     public function show(Ad $ad)
     {
         return $this->render('ad/show.html.twig', [
+            'ad' => $ad
+        ]);
+    }
+
+    // Function to edit an ad
+
+    /**
+     * @Route("/ads/{slug}/edit", name="ads_edit")
+     * @param Ad $ad
+     * @param Request $request
+     * @param ObjectManager $manager
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    public function edit(Ad $ad, Request $request, ObjectManager $manager)
+    {
+
+        // Build a form
+        $form = $this->createForm(AnnonceType::class, $ad);
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            foreach ($ad->getImages() as $image) {
+                $image->setAd($ad);
+                $manager->persist($image);
+            }
+
+            $manager->persist($ad);
+            $manager->flush();
+
+            $this->addFlash(
+                'success',
+                "The ad has <i>{$ad->getTitle()}</i> successfully edited"
+            );
+
+            return $this->redirectToRoute('ads_show', [
+                'slug' => $ad->getSlug()
+            ]);
+        }
+
+        return $this->render('ad/edit.html.twig', [
+            'form' => $form->createView(),
             'ad' => $ad
         ]);
     }

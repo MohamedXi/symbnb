@@ -6,10 +6,16 @@ use Cocur\Slugify\Slugify;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\AdRepository")
  * @ORM\HasLifecycleCallbacks
+ * @UniqueEntity(
+ *     fields={"title"},
+ *     message="Another ad already has this title. Please enter another title."
+ * )
  */
 class Ad
 {
@@ -22,6 +28,7 @@ class Ad
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\Length(min=10, max=255, minMessage="The title must than more 10 characters", maxMessage="The title don't must than more 10 characters")
      */
     private $title;
 
@@ -37,21 +44,25 @@ class Ad
 
     /**
      * @ORM\Column(type="text")
+     * @Assert\Length(min=100, max=255, minMessage="The introduction must than more 100 characters", maxMessage="The introduction don't must than more 255 characters")
      */
     private $introduction;
 
     /**
      * @ORM\Column(type="text")
+     * @Assert\Length(min=550, max=20000, minMessage="The content must than more 100 characters", maxMessage="The content don't must than more 255 characters")
      */
     private $content;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\Url()
      */
     private $coverImage;
 
     /**
      * @ORM\Column(type="integer")
+     * @Assert\Type(type="integer")
      */
     private $rooms;
 
