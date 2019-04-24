@@ -9,18 +9,15 @@
         <div class="container-fluid py-xl-5">
             <div class="container space-top-3 space-bottom-md-3 space-bottom-2">
                 <!-- Title row -->
-                <div class="w-md-80 w-lg-50 text-center mx-md-auto mb-9">
-                    <span class="btn btn-xs btn-soft-success btn-pill mb-2">What we do?</span>
-                    <h2>Front makes designing easy and performance fast</h2>
+                <div class="w-md-80 w-lg-50 text-center mx-md-auto">
+                    <span class="mb-2 h4">What we do?</span>
+                    <h2 class="h1">Front makes designing easy and performance fast</h2>
                 </div>
-                <div class="w-md-60 w-lg-50 text-center mx-auto mb-7">
-                    <h4 class="h5">
+                <div class="w-md-60 w-lg-50 text-center mx-auto">
+                    <h4 class="h3">
                         It is fast and easy. <span class="font-weight-normal">Create your first and ongoing website with Front.</span>
                     </h4>
-                </div>
-
-                <div class="w-50 w-md-40 w-lg-30 text-center mx-auto">
-                    <p class="small">We are launching soon. Join the priority list for information and early access.</p>
+                    <p>We are launching soon. Join the priority list for information and early access.</p>
                 </div>
                 <!-- End title row -->
 
@@ -41,11 +38,11 @@
                                 </a>
                                 <div class="card-body">
                                     <a class="text-decoration-none text-dark" href="{{ adUrl }}">
-                                        <h5 class="card-title">{{ ad.title|length > 25? ad.title|slice(0, 25) ~ '…' : ad.title  }}</h5>
+                                        <h3 class="card-title">{{ ad.title|length > 25? ad.title|slice(0, 25) ~ '…' : ad.title  }}</h3>
                                     </a>
-                                    <h6 class="card-subtitle mb-2 text-muted">No reviews yet</h6>
+                                    <h4 class="card-subtitle text-muted">No reviews yet</h4>
                                     <a class="text-decoration-none text-black-50" href="{{ adUrl }}">
-                                        <p class="card-text">{{ ad.introduction|length > 70? ad.introduction|slice(0, 70) ~ '…' : ad.introduction}}</p>
+                                        <p class="card-text py-3">{{ ad.introduction|length > 70? ad.introduction|slice(0, 70) ~ '…' : ad.introduction}}</p>
                                     </a>
                                     <a href="{{ path('ads_show', {'slug': ad.slug}) }}" class="card-link">See more</a>
                                     <a href="#" class="card-link">Share to friend</a>

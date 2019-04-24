@@ -4,19 +4,26 @@
 
 {% block body %}
 
-    <div class="container">
+    <div class="container py-7">
         <div class="row justify-content-center">
-            <div class="col-12 col-md-5 col-xl-4 my-5">
+            <div class="col-12 col-md-5 col-xl-4">
 
                 <!-- Heading -->
-                <h1 class="display-4 text-center mb-3">
+                <h1 class="text-center">
                     Sign in
                 </h1>
 
                 <!-- Subheading -->
-                <p class="text-muted text-center mb-5">
+                <p class="text-muted text-center">
                     Free access to our dashboard.
                 </p>
+
+                <!-- Error alert -->
+                {% if hasError %}
+                    <div class="alert alert-danger text-center">
+                        An error has occurred, the email address or password is incorrect.
+                    </div>
+                {% endif %}
 
                 <!-- Form -->
                 <form action="{{ path('account_login') }}" method="post">
@@ -29,7 +36,7 @@
 
                         <!-- Input -->
                         <input type="email" name="_username" id="email" class="form-control"
-                               placeholder="name@address.com" required>
+                               placeholder="name@address.com" value="{{ lastUsername }}" required>
 
                     </div>
 
@@ -71,7 +78,7 @@
                     <!-- Link -->
                     <div class="text-center">
                         <small class="text-muted text-center">
-                            Don't have an account yet? <a href="#">Sign up</a>.
+                            Don't have an account yet? <a href="{{ path('account_register') }}">Sign up</a>.
                         </small>
                     </div>
 

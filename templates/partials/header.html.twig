@@ -6,22 +6,31 @@
             <span class="navbar-toggler-icon"></span>
         </button>
 
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav mr-auto">
-                <li class="nav-item active">
+                <li class="nav-item">
                     <a class="nav-link" href="{{ path('homepage') }}">Home</a>
                 </li>
-                <li class="nav-item active">
+                <li class="nav-item ">
                     <a class="nav-link" href="{{ path('ad_index') }}">Our ads</a>
                 </li>
-                <li class="nav-item active">
+                <li class="nav-item">
                     <a class="nav-link" href="{{ path('ads_create') }}">Add new ad</a>
                 </li>
             </ul>
             <ul class="navbar-nav ml-auto">
-                <li class="nav-item">
-                    <a href="#" class="nav-link">My account</a>
-                </li>
+                {% if app.user %}
+                    <li class="nav-item">
+                        <a href="{{ path('account_logout') }}" class="nav-link">Sign out</a>
+                    </li>
+                {% else %}
+                    <li class="nav-item">
+                        <a href="{{ path('account_register') }}" class="nav-link">Sign up</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ path('account_login') }}" class="nav-link">Sign in</a>
+                    </li>
+                {% endif %}
             </ul>
         </div>
     </nav>
