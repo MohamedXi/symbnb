@@ -17,7 +17,11 @@
                 <p class="card-text py-3">{{ ad.introduction|length > 70? ad.introduction|slice(0, 70) ~ '…' : ad.introduction}}</p>
             </a>
             <a href="{{ path('ads_show', {'slug': ad.slug}) }}" class="card-link">See more</a>
-            <a href="#" class="card-link">Share to friend</a>
+            {% if app.user and app.user == ad.author %}
+                <a href="{{ path('ads_edit', {'slug': ad.slug}) }}" class="btn btn-link">
+                    Edit this ad
+                </a>
+            {% endif %}
         </div>
     </div>
 </div>

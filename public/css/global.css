@@ -21326,7 +21326,7 @@ textarea[resize=horizontal] {
 
 @media (min-width: 992px) {
     .navbar-expand-lg .dropdown:not(.dropdown-submenu):not(.dropdown-fluid) > .dropdown-menu:not(.dropdown-menu-right) {
-        margin-left: -1.25rem;
+        margin-left: 2rem;
     }
     .navbar-expand-lg .dropdown:not(.dropdown-submenu):not(.dropdown-fluid) > .dropdown-menu-right {
         margin-right: -1.25rem;

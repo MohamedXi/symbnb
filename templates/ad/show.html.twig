@@ -19,8 +19,23 @@
                                     class="fa fa-xs fa-star text-primary"></i><i
                                     class="fa fa-xs fa-star text-gray-200 mr-4"> </i>8 Reviews</p>
                     </div>
-                    <div class="calltoactions"><a href="#leaveReview" onclick="$('#leaveReview').collapse('show')"
-                                                  data-smooth-scroll="" class="btn btn-primary">booking</a></div>
+                    <div class="calltoactions">
+                        {% if app.user and app.user == ad.author %}
+                            <a href="{{ path('ads_delete', {'slug': ad.slug}) }}" class="btn btn-outline-danger">
+                                Delete this ad
+                            </a>
+
+                            <a href="{{ path('ads_edit', {'slug': ad.slug}) }}" class="btn btn-secondary">
+                                Edit this ad
+                            </a>
+                            {% else %}
+                                <a href="#" onclick="$('#leaveReview').collapse('show')"
+                                   data-smooth-scroll="" class="btn btn-primary">
+                                    booking
+                                </a>
+                        {% endif %}
+
+                    </div>
                 </div>
             </div>
         </section>

@@ -24,12 +24,11 @@
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                             <a class="dropdown-item" href="{{ path('account_index') }}"><i class="fal fa-user"></i>Profile</a>
-                            <a class="dropdown-item" href="{{ path('account_password') }}"><i class="fal fa-unlock-alt"></i>Security</a>
+                            <a class="dropdown-item" href="{{ path('ads_create') }}"><i class="fal fa-plus-circle"></i></i>Add a new ad</a>
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item" href="{{ path('account_logout') }}"><i class="fal fa-sign-out-alt"></i>Sin out</a>
                         </div>
                     </li>
-                    <a href="{{ path('ads_create') }}" class="btn btn-sm btn-outline-primary add-new-ad">Add a new ad</a>
                 {% else %}
                     <li class="nav-item">
                         <a href="{{ path('account_register') }}" class="nav-link">Sign up</a>
