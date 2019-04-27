@@ -1,12 +1,10 @@
 <header class="container bg-light">
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <a class="navbar-brand" href="{{ path('homepage') }}">Navbar</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
-
-        <div class="collapse navbar-collapse" id="navbarCollapse">
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item">
                     <a class="nav-link" href="{{ path('homepage') }}">Home</a>
@@ -20,9 +18,18 @@
             </ul>
             <ul class="navbar-nav ml-auto">
                 {% if app.user %}
-                    <li class="nav-item">
-                        <a href="{{ path('account_logout') }}" class="nav-link">Sign out</a>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <img class="rounded-circle" src="{{ app.user.picture }}" alt="Avatar's {{ app.user.fullName }}" style="height: 45px; width: auto">{{ app.user.fullName }}
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="{{ path('account_index') }}"><i class="fal fa-user"></i>Profile</a>
+                            <a class="dropdown-item" href="{{ path('account_password') }}"><i class="fal fa-unlock-alt"></i>Security</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="{{ path('account_logout') }}"><i class="fal fa-sign-out-alt"></i>Sin out</a>
+                        </div>
                     </li>
+                    <a href="{{ path('ads_create') }}" class="btn btn-sm btn-outline-primary add-new-ad">Add a new ad</a>
                 {% else %}
                     <li class="nav-item">
                         <a href="{{ path('account_register') }}" class="nav-link">Sign up</a>

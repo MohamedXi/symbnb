@@ -25,30 +25,8 @@
                     <div class="row mt-5">
                         {% for ad in ads %}
 
-                            {% set adUrl = path('ads_show', {'slug': ad.slug}) %}
-
-                        <div class="col-md-4">
-                            <div class="card mb-3">
-                                <div class="card-header text-center">
-                                    <span class="font-weight-bold">{{ ad.price }}&euro;/night</span> | {{ ad.rooms }} bedrooms
-                                </div>
-                                <a href="{{ adUrl }}">
-                                    <img src="{{ ad.coverImage }}" alt="Home image"
-                                         style="height: 100%; width: 100%; display: block">
-                                </a>
-                                <div class="card-body">
-                                    <a class="text-decoration-none text-dark" href="{{ adUrl }}">
-                                        <h3 class="card-title">{{ ad.title|length > 25? ad.title|slice(0, 25) ~ '…' : ad.title  }}</h3>
-                                    </a>
-                                    <h4 class="card-subtitle text-muted">No reviews yet</h4>
-                                    <a class="text-decoration-none text-black-50" href="{{ adUrl }}">
-                                        <p class="card-text py-3">{{ ad.introduction|length > 70? ad.introduction|slice(0, 70) ~ '…' : ad.introduction}}</p>
-                                    </a>
-                                    <a href="{{ path('ads_show', {'slug': ad.slug}) }}" class="card-link">See more</a>
-                                    <a href="#" class="card-link">Share to friend</a>
-                                </div>
-                            </div>
-                        </div>
+                            {% set url = path('ads_show', {'slug': ad.slug}) %}
+                            {% include 'ad/_ad.html.twig' %}
                         {% endfor %}
                     </div>
                     <!-- Card row -->

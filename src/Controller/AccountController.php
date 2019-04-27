@@ -2,10 +2,14 @@
 
 namespace App\Controller;
 
+use App\Entity\UpdatePassword;
 use App\Entity\User;
+use App\Form\AccountType;
+use App\Form\PasswordUpdateType;
 use App\Form\RegistrationType;
 use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Form\FormError;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -15,6 +19,7 @@ use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 class AccountController extends AbstractController
 {
     /**
+     * The login function
      * @Route("/login", name="account_login")
      * @param AuthenticationUtils $authenticationUtils
      * @return \Symfony\Component\HttpFoundation\Response
@@ -32,6 +37,7 @@ class AccountController extends AbstractController
     }
 
     /**
+     * The logout function
      * @Route("/logout", name="account_logout")
      * @return void
      */
@@ -41,6 +47,7 @@ class AccountController extends AbstractController
     }
 
     /**
+     * The register function
      * @Route("/register", name="account_register")
      * @param Request $request
      * @param ObjectManager $manager
@@ -79,6 +86,94 @@ class AccountController extends AbstractController
 
         return $this->render('account/registration.html.twig', [
             'form' => $form->createView()
+        ]);
+    }
+
+    /**
+     * The profile update
+     * @Route("/account/profile", name="account_profile")
+     * @param Request $request
+     * @param ObjectManager $manager
+     * @return Response
+     */
+    public function profile(Request $request, ObjectManager $manager)
+    {
+        $user = $this->getUser();
+
+        $form = $this->createForm(AccountType::class, $user);
+
+        // Manage the registration form with Request function
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $manager->persist($user);
+            $manager->flush();
+
+            $this->addFlash(
+                'success',
+                "Your changes have been saved"
+            );
+
+            return $this->redirectToRoute('account_profile');
+        }
+
+        return $this->render('account/profile.html.twig', [
+            'form' => $form->createView()
+        ]);
+    }
+
+    /**
+     * @Route("/account/update-password", name="account_password")
+     * @param Request $request
+     * @param UserPasswordEncoderInterface $userPasswordEncoder
+     * @return Response
+     */
+    public function updatePassword(Request $request, UserPasswordEncoderInterface $userPasswordEncoder, ObjectManager $manager)
+    {
+        $passwordUpdate = new UpdatePassword();
+
+        // Get the current user password
+        $user = $this->getUser();
+
+        $form = $this->createForm(PasswordUpdateType::class, $passwordUpdate);
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            if (!password_verify($passwordUpdate->getOldPassword(), $user->getHash())){
+                // Verify the current user password
+                $form->get('oldPassword')->addError( new FormError('The current password does not match'));
+            } else {
+                $newPassword = $passwordUpdate->getNewPassword();
+                $hash = $userPasswordEncoder->encodePassword($user, $newPassword);
+
+                $user->setHash($hash);
+                $manager->persist($user);
+                $manager->flush();
+
+                $this->addFlash(
+                    'success',
+                    'Your password has been changed'
+                );
+
+                return $this->redirectToRoute('account_profile');
+            }
+        }
+
+        return $this->render('account/password.html.twig', [
+            'form' => $form->createView()
+        ]);
+    }
+
+
+    /**
+     * @Route("/account", name="account_index")
+     * @return Response
+     */
+    public function myAccount()
+    {
+        return $this->render('user/user.html.twig', [
+            'user' => $this->getUser()
         ]);
     }
 }

@@ -1,0 +1,13 @@
+@media (min-width: 576px) {
+    .add-new-ad {
+        height: 40px;
+        margin: 0 !important;
+    }
+}
+
+@media (min-width: 768px) {
+    .add-new-ad {
+        height: 40px;
+        margin: 0 !important;
+    }
+}

@@ -1,0 +1,58 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Show the {{ user.fullName }} profile{% endblock %}
+
+{% block body %}
+    <div class="container py-5">
+        {% if user is same as (app.user) %}
+            <div class="d-flex mb-3">
+                <a href="{{ path('account_profile') }}" class="btn btn-icon btn-group-nav shadow btn-neutral">
+                    <span class="btn-inner--icon"><i class="fal fa-user"></i></span>
+                    <span class="btn-inner--text d-none d-md-inline-block">My profile</span>
+                </a>
+                <a href="{{ path('account_password') }}" class="btn btn-icon btn-group-nav shadow btn-neutral">
+                    <span class="btn-inner--icon"><i class="fal fa-unlock"></i></span>
+                    <span class="btn-inner--text d-none d-md-inline-block">My password</span>
+                </a>
+            </div>
+        {% endif %}
+        <div class="card bg-gradient-warning hover-shadow-lg">
+            <div class="card-body py-3">
+                <div class="row row-grid align-items-center">
+                    <div class="col-lg-8">
+                        <div class="media align-items-center">
+                            <a href="#" class="avatar avatar-lg rounded-circle mr-3">
+                                <img alt="Image placeholder" src="{{ user.picture }}">
+                            </a>
+                            <div class="media-body">
+                                <h5 class="text-white mb-0">{{ user.fullName }}</h5>
+                                <div>
+                                    <span class="text-white">{{ user.ads | length}} ad.s into website</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="actions-toolbar py-2 mb-4">
+            <h5 class="mb-1">General information</h5>
+            <p class="text-sm text-muted mb-0">{{ user.description | raw }}</p>
+        </div>
+
+        <hr>
+        {% if user.ads | length > 0 %}
+        <div class="row">
+            {% for ad in user.ads %}
+                {% include 'ad/_ad.html.twig' %}
+            {% endfor %}
+        </div>
+        {% else %}
+            <div class="alert alert-warning">
+                <p>
+                    <span class="font-weight-bold">{{ user.fullName }}</span> don't have an ad on the site.
+                </p>
+            </div>
+        {% endif %}
+    </div>
+{% endblock %}
