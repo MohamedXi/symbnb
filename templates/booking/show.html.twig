@@ -1,0 +1,88 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Booking number {{ booking.id }}{% endblock %}
+
+{% block body %}
+    {% set ad = booking.ad %}
+    {% set author = ad.author %}
+
+    <div class="container py-5">
+        <h1>Your booking number {{ booking.id }}</h1>
+
+        {% if app.request.query.get('withAlert') %}
+            <div class="alert alert-success">
+                <h4 class="alert-heading">
+                    Cool !
+                </h4>
+                <p>Your reservation with
+                    <span class="font-weight-bold">
+                        <a href="{{ path('user_show', {'slug': author.slug}) }}">{{ author.fullName }}</a>
+                    </span>
+                    for the ad
+                    <span class="font-weight-bold">
+                        <a href="{{ path('ads_show', {'slug': ad.slug}) }}">{{ ad.title }}</a>
+                    </span>
+                    has successfully !
+                </p>
+            </div>
+        {% endif %}
+
+        <div class="row">
+            <div class="col">
+                <div class="alert alert-light">
+                    <h2>Details</h2>
+                    <dl class="row">
+                        <dt class="col-md-4">Number</dt>
+                        <dd class="col-md-8">{{ booking.id }}</dd>
+                        <dt class="col-md-4">Arrival date</dt>
+                        <dd class="col-md-8">{{ booking.startDate | date('d/m/Y') }}</dd>
+                        <dt class="col-md-4">End date</dt>
+                        <dd class="col-md-8">{{ booking.endDate | date('d/m/Y') }}</dd>
+                        <dt class="col-md-4">Night number</dt>
+                        <dd class="col-md-8">{{ booking.duration }}</dd>
+                        <dt class="col-md-4">Total amount</dt>
+                        <dd class="col-md-8">{{ booking.amount }} &euro;</dd>
+                        <dt class="col-md-4">Comment</dt>
+                        <dd class="col-md-8">{{ booking.comment }}</dd>
+                    </dl>
+                    <hr/>
+                    <h3 class="alert-heading pt-3">Your host</h3>
+
+                    <div class="card bg-gradient-warning hover-shadow-lg">
+                        <div class="card-body py-3">
+                            <div class="row row-grid align-items-center">
+                                <div class="col-lg-8">
+                                    <div class="media align-items-center">
+                                        <a href="#" class="avatar avatar-lg rounded-circle mr-3 text-white">
+                                            <img alt="avatar's {{ author.fullName }}" src="{{ author.picture }}">
+                                        </a>
+                                        <div class="media-body">
+                                            <h5 class="text-white mb-0"><a class="text-white" href="{{ path('user_show', {'slug': author.slug}) }}">{{ author.fullName }}</a></h5>
+                                            <div>
+                                                <span class="text-white">{{ author.ads | length}} ad.s into website</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {{ author.description | raw }}
+                </div>
+            </div>
+            <div class="col">
+                <div class="alert alert-light">
+                    <h2>Your accommodation</h2>
+                    <p>
+                        <a href="{{ path('ads_show', {'slug': 'x'}) }}">{{ ad.title }}</a>
+                    </p>
+                    {{ ad.content | raw }}
+                    <hr>
+                    <img src="{{ ad.coverImage }}>" alt="{{ ad.title }}'s image">
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+

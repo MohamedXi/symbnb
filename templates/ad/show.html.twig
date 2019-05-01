@@ -29,8 +29,7 @@
                                 Edit this ad
                             </a>
                             {% else %}
-                                <a href="#" onclick="$('#leaveReview').collapse('show')"
-                                   data-smooth-scroll="" class="btn btn-primary">
+                                <a href="{{ path('booking_create', {'slug' : ad.slug}) }}" class="btn btn-primary">
                                     booking
                                 </a>
                         {% endif %}

@@ -101,6 +101,29 @@ class Ad
         }
     }
 
+    /**
+     * Get days that are not available
+     * @return array
+     */
+    public function getNotAvailableDays()
+    {
+        $notAvailableDays = [];
+
+        foreach ($this->bookings as $booking) {
+            $result = range(
+                $booking->getStartDate()->getTimestamp(),
+                $booking->getEndDate()->getTimestamp(),
+                24 * 60 * 60
+            );
+
+            $days = array_map(function ($dayTimestamp){
+                return  new \DateTime(date('Y-m-d', $dayTimestamp));
+            }, $result);
+            $notAvailableDays = array_merge($notAvailableDays, $days);
+        }
+        return $notAvailableDays;
+    }
+
     public function getId(): ?int
     {
         return $this->id;

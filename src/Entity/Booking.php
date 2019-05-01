@@ -3,9 +3,11 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\BookingRepository")
+ * @ORM\HasLifecycleCallbacks()
  */
 class Booking
 {
@@ -30,11 +32,15 @@ class Booking
 
     /**
      * @ORM\Column(type="datetime")
+     * @Assert\Date(message="Warning, the start date must be good format")
+     * @Assert\GreaterThan("today", message="The start date must be superior at today")
      */
     private $startDate;
 
     /**
      * @ORM\Column(type="datetime")
+     * @Assert\Date(message="Warning, the end date must be good format")
+     * @Assert\GreaterThan(propertyPath="startDate", message="The end date must be further than the start date")
      */
     private $endDate;
 
@@ -47,6 +53,73 @@ class Booking
      * @ORM\Column(type="float")
      */
     private $amount;
+
+    /**
+     * @ORM\Column(type="text", nullable=true)
+     */
+    private $comment;
+
+    /**
+     * @ORM\PrePersist()
+     * @throws \Exception
+     */
+    public function prePersist()
+    {
+        if (empty($this->createdA)) {
+            $this->createdAt = new \DateTime();
+        }
+
+        if ((empty($this->amount))) {
+            $this->amount = $this->ad->getPrice() * $this->getDuration();
+        }
+    }
+
+    // Verify the booking date if this exists
+    public function isBookableDate()
+    {
+        $notAvailableDays = $this->ad->getNotAvailableDays();
+        $bookingDays = $this->getDays();
+
+        $formatDay = function ($day){
+            return $day->format('Y-m-d');
+        };
+
+        $days = array_map($formatDay, $bookingDays);
+
+        $notAvailable = array_map($formatDay, $notAvailableDays);
+
+
+        foreach ($days as $day) {
+            if (array_search($day, $notAvailable) !== false) return false;
+        }
+
+        return true;
+    }
+
+
+    /**
+     * @return array
+     */
+    public function getDays()
+    {
+        $result = range(
+            $this->getStartDate()->getTimestamp(),
+            $this->getEndDate()->getTimestamp(),
+            24 * 60 * 60
+        );
+
+        $days = array_map(function ($dayTimestamp){
+           return new \DateTime(date('Y-m-d', $dayTimestamp));
+        }, $result);
+
+        return $days;
+    }
+
+    public function getDuration()
+    {
+        $diff = $this->endDate->diff($this->startDate);
+        return $diff->days;
+    }
 
     public function getId(): ?int
     {
@@ -121,6 +194,18 @@ class Booking
     public function setAmount(float $amount): self
     {
         $this->amount = $amount;
+
+        return $this;
+    }
+
+    public function getComment(): ?string
+    {
+        return $this->comment;
+    }
+
+    public function setComment(?string $comment): self
+    {
+        $this->comment = $comment;
 
         return $this;
     }
