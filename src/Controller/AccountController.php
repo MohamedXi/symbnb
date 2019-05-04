@@ -23,7 +23,7 @@ class AccountController extends AbstractController
      * The login function
      * @Route("/login", name="account_login")
      * @param AuthenticationUtils $authenticationUtils
-     * @return \Symfony\Component\HttpFoundation\Response
+     * @return Response
      */
     public function login(AuthenticationUtils $authenticationUtils)
     {
@@ -68,12 +68,12 @@ class AccountController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             // Hash the password with bcrypt
-            $hash = $userPasswordEncoder->encodePassword($user ,$user->getHash());
+            $hash = $userPasswordEncoder->encodePassword($user, $user->getHash());
             $user->setHash($hash);
 
             // Show the alert message
             $this->addFlash(
-              'success',
+                'success',
                 "Your account has created successfully"
             );
 
@@ -143,9 +143,9 @@ class AccountController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            if (!password_verify($passwordUpdate->getOldPassword(), $user->getHash())){
+            if (!password_verify($passwordUpdate->getOldPassword(), $user->getHash())) {
                 // Verify the current user password
-                $form->get('oldPassword')->addError( new FormError('The current password does not match'));
+                $form->get('oldPassword')->addError(new FormError('The current password does not match'));
             } else {
                 $newPassword = $passwordUpdate->getNewPassword();
                 $hash = $userPasswordEncoder->encodePassword($user, $newPassword);
@@ -179,5 +179,16 @@ class AccountController extends AbstractController
         return $this->render('user/user.html.twig', [
             'user' => $this->getUser()
         ]);
+    }
+
+
+    /**
+     * Allow display the bookings list of users
+     * @Route("/account/bookings", name="account_bookings")
+     * @return Response
+     */
+    public function bookings()
+    {
+        return $this->render('account/bookings.html.twig');
     }
 }

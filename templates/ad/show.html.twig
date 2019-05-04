@@ -13,11 +13,7 @@
                     <div class="text-white mb-4 mb-lg-0">
                         <h1 class="text-white verified ">{{ ad.title }}</h1>
                         <p><i class="fa-map-marker-alt fas mr-2"></i> 53 Broadway, Brooklyn, NY 1129</p>
-                        <p class="mb-0 d-flex align-items-center"><i class="fa fa-xs fa-star text-primary"></i><i
-                                    class="fa fa-xs fa-star text-primary"></i><i
-                                    class="fa fa-xs fa-star text-primary"></i><i
-                                    class="fa fa-xs fa-star text-primary"></i><i
-                                    class="fa fa-xs fa-star text-gray-200 mr-4"> </i>8 Reviews</p>
+                        <p class="mb-0 d-flex align-items-center">{% include 'partials/rating.html.twig' with {'rating': ad.avgRatings}%}</p>
                     </div>
                     <div class="calltoactions">
                         {% if app.user and app.user == ad.author %}
@@ -82,6 +78,41 @@
                                     <span class="sr-only">Next</span>
                                 </a>
                             </div>
+
+                            <hr>
+
+                            {% if ad.comments | length > 0 %}
+                                <h3 class="mb-3">The comments of or traveler</h3>
+
+                                <div class="alert alert-info">
+                                    <h1 class="alert alert-heading">
+                                        <span class="row align-items-center">
+                                            <span class="col">
+                                                Global rating given by or travelers<br/>
+                                                <small>This average is calculated on {{ ad.comments | length }} reviews</small>
+                                            </span>
+                                            <span class="col d-flex justify-content-end">
+                                                {% include 'partials/rating.html.twig' with {'rating': ad.avgRatings} %}
+                                            </span>
+                                        </span>
+                                    </h1>
+                                </div>
+
+                                {%  for comment in ad.comments %}
+                                    <div class="bg-white rounded mb-3 py-3 px-3">
+                                        <span class="font-weight-bold">The traveler has say :</span>
+                                        <blockquote class="my-3">
+                                            {{ comment.content }}
+                                        </blockquote>
+                                        <span class="font-weight-bold">Rating given by {{ comment.author.fullName }} :</span>
+                                        {% include 'partials/rating.html.twig' with {'rating': comment.rating}%}
+                                    </div>
+                                {% endfor %}
+                            {% else %}
+                                <div class="alert alert-warning">
+                                    This ad hasn't a rating for the moment
+                                </div>
+                            {% endif %}
                         </div>
                         <!-- Amenities-->
                         <div class="text-block mt-5">

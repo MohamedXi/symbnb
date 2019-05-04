@@ -4,7 +4,9 @@ namespace App\Controller;
 
 use App\Entity\Ad;
 use App\Entity\Booking;
+use App\Entity\Comment;
 use App\Form\BookingType;
+use App\Form\CommentType;
 use Doctrine\Common\Persistence\ObjectManager;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -46,11 +48,11 @@ class BookingController extends AbstractController
                     'Dates not available'
                 );
             } else { // Else save de reservation et redirectTo
-            // Send the booking in database
-            $manager->persist($booking);
-            $manager->flush();
+                // Send the booking in database
+                $manager->persist($booking);
+                $manager->flush();
 
-            return $this->redirectToRoute('booking_show', ['id' => $booking->getId(), 'withAlert' => true]);
+                return $this->redirectToRoute('booking_show', ['id' => $booking->getId(), 'withAlert' => true]);
             }
         }
 
@@ -63,12 +65,33 @@ class BookingController extends AbstractController
     /**
      * @Route("/booking/{id}", name="booking_show")
      * @param Booking $booking
+     * @param ObjectManager $manager
+     * @param Request $request
      * @return Response
      */
-    public function show(Booking $booking)
+    public function show(Booking $booking, ObjectManager $manager, Request $request)
     {
+        $comment = new Comment();
+
+        $form = $this->createForm(CommentType::class, $comment);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $comment->setAd($booking->getAd())
+                    ->setAuthor($this->getUser());
+
+            $manager->persist($comment);
+            $manager->flush();
+
+            $this->addFlash(
+                'success',
+                'Your comment has submitted'
+            );
+        }
+
         return $this->render('booking/show.html.twig', [
-            'booking' => $booking
+            'booking' => $booking,
+            'form' => $form->createView(),
         ]);
     }
 }

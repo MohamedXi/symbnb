@@ -2,6 +2,9 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
     <title>{% block title %}Welcome!{% endblock %} | Symbnb</title>
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.8.1/css/all.css"
           integrity="sha384-Bx4pytHkyTDy3aJKjGkGoHPt3tvv6zlwwjc3iqN7ktaiEMLDPqLSZYts2OjKcBx1" crossorigin="anonymous">
@@ -14,7 +17,7 @@
 </head>
 <body>
 {# ------ navbar ------ #}
-<div class="container-fluid bg-light">
+<div class="container-fluid bg-white">
     {% include 'partials/header.html.twig' %}
 </div>
 {% for label, messages in app.flashes %}

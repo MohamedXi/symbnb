@@ -12,7 +12,7 @@
         <button type="submit" class="btn btn-primary">Bonking</button>
         {{ form_end(form) }}
         <h2>price : <span id="amount">…</span></h2>
-        <span id="days">0</span> night to {{ ad.price }}
+        <span id="days">0</span> night to {{ ad.price | number_format(2, ',', ' ') }}
 
     </div>
 

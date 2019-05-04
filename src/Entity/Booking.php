@@ -33,7 +33,7 @@ class Booking
     /**
      * @ORM\Column(type="datetime")
      * @Assert\Date(message="Warning, the start date must be good format")
-     * @Assert\GreaterThan("today", message="The start date must be superior at today")
+     * @Assert\GreaterThan("today", message="The start date must be superior at today", groups={"front"})
      */
     private $startDate;
 
@@ -61,6 +61,7 @@ class Booking
 
     /**
      * @ORM\PrePersist()
+     * @ORM\PreUpdate()
      * @throws \Exception
      */
     public function prePersist()

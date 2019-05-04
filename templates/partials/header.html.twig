@@ -1,5 +1,5 @@
-<header class="container bg-light">
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+<header class="container bg-white">
+    <nav class="navbar navbar-expand-lg bg-white">
         <a class="navbar-brand" href="{{ path('homepage') }}">Navbar</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -24,7 +24,8 @@
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                             <a class="dropdown-item" href="{{ path('account_index') }}"><i class="fal fa-user"></i>Profile</a>
-                            <a class="dropdown-item" href="{{ path('ads_create') }}"><i class="fal fa-plus-circle"></i></i>Add a new ad</a>
+                            <a class="dropdown-item" href="{{ path('ads_create') }}"><i class="fal fa-plus-circle"></i>Add a new ad</a>
+                            <a class="dropdown-item" href="{{ path('account_bookings') }}"><i class="fal fa-plus-circle"></i>My bookings</a>
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item" href="{{ path('account_logout') }}"><i class="fal fa-sign-out-alt"></i>Sin out</a>
                         </div>

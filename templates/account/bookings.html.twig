@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Your bookings{% endblock %}
+
+{% block body %}
+    <div class="container py-5">
+        {% for booking in app.user.bookings %}
+            <div class="card card-frame card-text-dark mb-2 p-3">
+            <span class="row justify-content-sm-between align-items-sm-center">
+              <span class="col-sm-6 mb-2 mb-sm-0">
+                  Reservation number {{ booking.id }}<br/>
+                  Date : {{ booking.startDate | date('d/m/Y') }} at {{ booking.endDate | date('d/m/Y') }}<br>
+                  Price : {{ booking.amount }}<br/>
+                  {% set comment = booking.ad.commentFromAuthor(app.user) %}
+                  {% if comment is not null %}
+                      <span class="font-weight-bold">Review :<br/></span> {% include('partials/rating.html.twig') with { 'rating': comment.rating } %}
+                  {% else %}
+                      <span>Not review yet</span><a href="{{ path('booking_show', {'id': booking.id}) }}#comment" class="btn btn-link">give my review</a>
+                  {% endif %}
+              </span>
+                <a href="{{ path('booking_show', {'id': booking.id}) }}">
+              <span class="col-sm-6 text-primary text-sm-right">
+                See all details
+                <span class="fas fa-arrow-right small ml-2"></span>
+              </span>
+                    </a>
+            </span>
+            </div>
+
+        {% endfor %}
+    </div>
+
+{% endblock %}
+
+

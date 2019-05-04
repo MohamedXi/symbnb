@@ -1,0 +1,57 @@
+{% extends 'admin/base.html.twig' %}
+
+{% block title %}Edit booking number {{ booking.id }}{% endblock %}
+
+{% block body %}
+    <main class="u-main" role="main">
+        {% include 'admin/partials/sidebar.html.twig' %}
+
+        <div class="u-content">
+            <div class="u-body mt-5">
+                {% for label, messages in app.flashes %}
+                    <div class="alert alert-{{ label }} fade show align-items-center" role="alert">
+                        <i class="fa fa-check-circle alert-icon mr-3"></i>
+                        {% for message in messages %}
+                            {{ message | striptags }}
+                        {% endfor %}
+                        <button type="button" class="close" aria-label="Close" data-dismiss="alert">
+                            <span aria-hidden="true">×</span>
+                        </button>
+                    </div>
+                {% endfor %}
+
+                <div class="row">
+                    <div class="col">
+                        <div class="card">
+                            <header class="card-header">
+                                <h2 class="h3 card-header-title">Booking number {{ booking.id }} information</h2>
+                            </header>
+
+                            <div class="card-body">
+                                <span class="font-weight-bold">Booking linked at :</span> {{ booking.ad.title }}<br/>
+                                <span class="font-weight-bold">Author of this booking :</span> {{ booking.booker.fullName}}<br/>
+                                <span class="font-weight-bold">Booking date :</span> {{ booking.startDate | date('d/m/Y') }} at {{ booking.endDate | date('d/m/Y') }}<br/>
+                                <span class="font-weight-bold">Booking price :</span> {{ booking.amount }}<br/>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="card">
+                            <header class="card-header">
+                                <h2 class="h3 card-header-title">Edit comment</h2>
+                            </header>
+                            <div class="card-body">
+                                {{ form_start(form) }}
+                                {{ form_widget(form) }}
+                                <button type="submit" class="btn btn-primary">Save this booking</button>
+                                {{ form_end(form) }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% include 'admin/partials/footer.html.twig' %}
+        </div>
+    </main>
+{% endblock %}
+

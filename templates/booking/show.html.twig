@@ -41,9 +41,9 @@
                         <dt class="col-md-4">Night number</dt>
                         <dd class="col-md-8">{{ booking.duration }}</dd>
                         <dt class="col-md-4">Total amount</dt>
-                        <dd class="col-md-8">{{ booking.amount }} &euro;</dd>
+                        <dd class="col-md-8">{{ booking.amount | number_format(2, ',', ' ') }} &euro;</dd>
                         <dt class="col-md-4">Comment</dt>
-                        <dd class="col-md-8">{{ booking.comment }}</dd>
+                        <dd class="col-md-8">{{ booking.comment | default('No comment') }}</dd>
                     </dl>
                     <hr/>
                     <h3 class="alert-heading pt-3">Your host</h3>
@@ -70,16 +70,42 @@
                     {{ author.description | raw }}
                 </div>
             </div>
-            <div class="col">
+            <div class="col" id="comment">
                 <div class="alert alert-light">
                     <h2>Your accommodation</h2>
                     <p>
-                        <a href="{{ path('ads_show', {'slug': 'x'}) }}">{{ ad.title }}</a>
+                        <a href="{{ path('ads_show', {'slug': ad.slug}) }}">{{ ad.title }}</a>
                     </p>
                     {{ ad.content | raw }}
                     <hr>
                     <img src="{{ ad.coverImage }}>" alt="{{ ad.title }}'s image">
                 </div>
+            </div>
+        </div>
+        <div class="alert alert-light">
+            <div class="bg-white rounded mb-3 py-3 px-3">
+                <h3>Your review is important for us</h3>
+                {% if date() > date(booking.endDate) %}
+
+                    {% set comment = booking.ad.commentFromAuthor(app.user) %}
+
+                    {% if comment is not null %}
+                        <blockquote>
+                            {{ comment.content }}
+                        </blockquote>
+                        <span class="font-weight-bold">Review :</span> {%  include('partials/rating.html.twig') with { 'rating': comment.rating } %}
+                    {% else %}
+                        {{ form_start(form) }}
+                        {{ form_widget(form) }}
+                        <button type="submit" class="btn btn-primary">
+                            Comment
+                        </button>
+                        {{ form_end(form) }}
+                    {% endif %}
+
+                {% else %}
+                    Your travel hasn't yet finish. You  can't comment this booking
+                {% endif %}
             </div>
         </div>
     </div>

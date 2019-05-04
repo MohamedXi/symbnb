@@ -1,0 +1,58 @@
+{% extends 'admin/base.html.twig' %}
+
+{% block title %}Edit comment number {{ comment.id }}{% endblock %}
+
+{% block body %}
+    <main class="u-main" role="main">
+        {% include 'admin/partials/sidebar.html.twig' %}
+
+        <div class="u-content">
+            <div class="u-body">
+                {% for label, messages in app.flashes %}
+                    <div class="alert alert-{{ label }} fade show align-items-center" role="alert">
+                        <i class="fa fa-check-circle alert-icon mr-3"></i>
+                        {% for message in messages %}
+                            {{ message | striptags }}
+                        {% endfor %}
+                        <button type="button" class="close" aria-label="Close" data-dismiss="alert">
+                            <span aria-hidden="true">×</span>
+                        </button>
+                    </div>
+                {% endfor %}
+                <h1 class="h2 font-weight-semibold mb-4">Edit comment number {{ comment.id }}</h1>
+
+                <div class="row">
+                    <div class="col">
+                        <div class="card">
+                            <header class="card-header">
+                                <h2 class="h3 card-header-title">Comment information</h2>
+                            </header>
+
+                            <div class="card-body">
+                                <span class="font-weight-bold">Comment linked at :</span> {{ comment.ad.title }}<br/>
+                                <span class="font-weight-bold">Author of this ad :</span> {{ comment.author.fullName }}<br/>
+                                <span class="font-weight-bold">Comment created at :</span> {{ comment.createdAt | date('d/m/Y') }}<br/>
+                                <span class="font-weight-bold">Comment rating :</span> {{ comment.rating }}<br/>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="card">
+                            <header class="card-header">
+                                <h2 class="h3 card-header-title">Edit comment</h2>
+                            </header>
+                            <div class="card-body">
+                                {{ form_start(form) }}
+                                {{ form_widget(form) }}
+                                <button type="submit" class="btn btn-primary">Save this comment</button>
+                                {{ form_end(form) }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% include 'admin/partials/footer.html.twig' %}
+        </div>
+    </main>
+{% endblock %}
+
