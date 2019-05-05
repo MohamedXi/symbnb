@@ -40,12 +40,14 @@
                                 </thead>
 
                                 <tbody>
-                                {% for comment in comment %}
+                                {% for comment in pagination.data %}
                                     <tr>
                                         <td>{{ comment.id }}</td>
                                         <td>{{ comment.createdAt | date('d/m/Y') }}</td>
                                         <td><img src="{{ comment.author.picture }}" class="rounded-circle mr-2"
-                                                 style="height: 35px" alt="{{ comment.author.fullName }}'s avatar"/>{{ comment.author.fullName }}</td>
+                                                 style="height: 35px"
+                                                 alt="{{ comment.author.fullName }}'s avatar"/>{{ comment.author.fullName }}
+                                        </td>
                                         <td>{{ comment.content | length > 25? comment.content | slice(0, 50) ~ '…' : comment.content }}</td>
                                         <td>
                                             {% if comment.rating > 3 %}
@@ -88,6 +90,7 @@
                         <!-- End Table -->
                     </div>
                 </div>
+                {% include 'admin/partials/pagination.html.twig' with {'route': 'admin_comments_index'} %}
             </div>
             {% include 'admin/partials/footer.html.twig' %}
         </div>

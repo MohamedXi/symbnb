@@ -1,0 +1,30 @@
+<div class="row justify-content-between align-items-center mb-3 mt-3">
+    {% set page = pagination.page %}
+    {% set pages = pagination.pages %}
+    <div class="col-sm">
+        <nav aria-label="Bootstrap Pagination Example">
+            <ul class="pagination mb-0">
+                <li class="page-item">
+                    <a class="page-link btn rounded-left pager-btn rounded-0 {% if page == 1 %}disabled{% endif %}"
+                       href="{{ path(route, {'page': page - 1}) }}">← <span
+                                class="ml-1 d-none d-xl-inline-block">Previous</span></a>
+                </li>
+                {% for i in 1..pages %}
+                    <li class="page-item {% if page == i %}active{% endif %}">
+                        <a class="page-link"
+                           href="{{ path(route, {'page': i}) }}">{{ i }}</a>
+                    </li>
+                {% endfor %}
+                <li class="page-item">
+                    <a class="page-link btn rounded-right pager-btn rounded-0 {% if page == pages %}disabled{% endif %}"
+                       href="{{ path(route, {'page': page + 1}) }}"><span
+                                class="mr-1 d-none d-xl-inline-block">Next</span> →</a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+
+    <div class="col-sm text-sm-right mt-3 mt-sm-0">
+        <span class="u-font-size-90 text-muted">Page {{ page }} of {{ pages }}</span>
+    </div>
+</div>

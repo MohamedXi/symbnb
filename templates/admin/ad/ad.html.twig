@@ -33,14 +33,14 @@
                                     <th scope="col">#</th>
                                     <th scope="col">Title</th>
                                     <th scope="col">Author</th>
-                                    <th class="text-center" scope="col" >Average</th>
+                                    <th class="text-center" scope="col">Average</th>
                                     <th class="text-center" scope="col">Bookings</th>
                                     <th class="text-center" scope="col">Actions</th>
                                 </tr>
                                 </thead>
 
                                 <tbody>
-                                {% for ad in ads %}
+                                {% for ad in pagination.data %}
                                     <tr>
                                         <td>{{ ad.id }}</td>
                                         <td>{{ ad.title }}</td>
@@ -94,6 +94,7 @@
                         <!-- End Table -->
                     </div>
                 </div>
+                {% include 'admin/partials/pagination.html.twig' with {'route': 'admin_ads_index'} %}
             </div>
             {% include 'admin/partials/footer.html.twig' %}
         </div>
