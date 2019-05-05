@@ -90,7 +90,7 @@
                         <!-- End Table -->
                     </div>
                 </div>
-                {% include 'admin/partials/pagination.html.twig' with {'route': 'admin_comments_index'} %}
+                {{ pagination.display() }}
             </div>
             {% include 'admin/partials/footer.html.twig' %}
         </div>

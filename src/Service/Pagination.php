@@ -5,6 +5,8 @@ namespace App\Service;
 
 
 use Doctrine\Common\Persistence\ObjectManager;
+use Symfony\Component\HttpFoundation\RequestStack;
+use Twig\Environment;
 
 class Pagination
 {
@@ -16,38 +18,25 @@ class Pagination
 
     private $manager;
 
+    private $twig;
+
+    private $route;
+
+    private $templatePath;
+
 
     /**
      * Pagination constructor.
      * @param ObjectManager $manager
+     * @param Environment $environment
+     * @param RequestStack $requestStack
      */
-    public function __construct(ObjectManager $manager)
+    public function __construct(ObjectManager $manager, Environment $environment, RequestStack $requestStack, $templatePath)
     {
+        $this->route = $requestStack->getCurrentRequest()->attributes->get('_route');
         $this->manager = $manager;
-    }
-
-    public function getPages()
-    {
-        // Get total element
-        $repository = $this->manager->getRepository($this->entityClass);
-        $total = count($repository->findAll());
-
-        // Divide the total, round it up and send it back
-        $pages = ceil($total / $this->limit);
-        return $pages;
-    }
-
-    public function getData()
-    {
-        // Offset calculate
-        $offset = $this->currentPage * $this->limit - $this->limit;
-
-        // Get all elements in the repository
-        $repository = $this->manager->getRepository($this->entityClass);
-        $data = $repository->findBy([], [], $this->limit, $offset);
-
-        // Return the elements
-        return $data;
+        $this->twig = $environment;
+        $this->templatePath = $templatePath;
     }
 
     /**
@@ -103,4 +92,72 @@ class Pagination
     {
         return $this->currentPage;
     }
+
+    /**
+     * @param $route
+     * @return $this
+     */
+    public function setRoute($route)
+    {
+        $this->route = $route;
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getRoute()
+    {
+        return $route;
+    }
+
+    /**
+     * @throws \Twig\Error\LoaderError
+     * @throws \Twig\Error\RuntimeError
+     * @throws \Twig\Error\SyntaxError
+     */
+    public function display()
+    {
+        $this->twig->display('admin/partials/pagination.html.twig', [
+            'page' => $this->currentPage,
+            'pages' => $this->getPages(),
+            'route' => $this->route
+        ]);
+    }
+
+    public function getPages()
+    {
+        // Get total element
+        $repository = $this->manager->getRepository($this->entityClass);
+        $total = count($repository->findAll());
+
+        // Divide the total, round it up and send it back
+        $pages = ceil($total / $this->limit);
+        return $pages;
+    }
+
+    public function getData()
+    {
+        // Offset calculate
+        $offset = $this->currentPage * $this->limit - $this->limit;
+
+        // Get all elements in the repository
+        $repository = $this->manager->getRepository($this->entityClass);
+        $data = $repository->findBy([], [], $this->limit, $offset);
+
+        // Return the elements
+        return $data;
+    }
+
+    public function setTemplatePath($templatePath)
+    {
+        $this->templatePath = $templatePath;
+        return $this;
+    }
+
+    public function getTemplatePath()
+    {
+        return $this->templatePath;
+    }
+
 }
