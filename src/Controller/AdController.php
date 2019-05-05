@@ -9,7 +9,9 @@ use Doctrine\Common\Persistence\ObjectManager;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 class AdController extends AbstractController
@@ -17,7 +19,7 @@ class AdController extends AbstractController
     /**
      * @Route("/ads", name="ad_index")
      * @param AdRepository $repository
-     * @return \Symfony\Component\HttpFoundation\Response
+     * @return Response
      */
     public function ad(AdRepository $repository)
     {
@@ -37,7 +39,7 @@ class AdController extends AbstractController
      * @IsGranted("ROLE_USER")
      * @param Request $request
      * @param ObjectManager $manager
-     * @return \Symfony\Component\HttpFoundation\Response
+     * @return Response
      */
     public function create(Request $request, ObjectManager $manager)
     {
@@ -81,7 +83,7 @@ class AdController extends AbstractController
      *
      * @Route("/ads/{slug}", name="ads_show")
      * @param Ad $ad
-     * @return \Symfony\Component\HttpFoundation\Response
+     * @return Response
      */
     public function show(Ad $ad)
     {
@@ -98,7 +100,7 @@ class AdController extends AbstractController
      * @param Ad $ad
      * @param Request $request
      * @param ObjectManager $manager
-     * @return \Symfony\Component\HttpFoundation\Response
+     * @return Response
      */
     public function edit(Ad $ad, Request $request, ObjectManager $manager)
     {
@@ -139,7 +141,7 @@ class AdController extends AbstractController
      *
      * @Route("/ads/{slug}/delete", name="ads_delete")
      * @Security("is_granted('ROLE_USER') and user === ad.getAuthor()")
-     * @return \Symfony\Component\HttpFoundation\RedirectResponse
+     * @return RedirectResponse
      */
     public function delete(Ad $ad, ObjectManager $manager)
     {

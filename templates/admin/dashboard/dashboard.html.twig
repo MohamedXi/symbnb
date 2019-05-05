@@ -1,0 +1,81 @@
+{% extends 'admin/base.html.twig' %}
+
+{% block title %}Hello AdminDashboardController!{% endblock %}
+
+{% block body %}
+    <main class="u-main" role="main">
+        {% include 'admin/partials/sidebar.html.twig' %}
+
+        <div class="u-content">
+            <div class="u-body">
+                <div class="row pt-5">
+                    <div class="col-sm-6 col-xl-3 mb-4">
+                        <div class="card">
+                            <div class="card-body media align-items-center px-xl-3">
+                                <div class="u-doughnut u-doughnut--70 mr-3 mr-xl-2 bg-soft-info rounded-circle border border-soft-info">
+                                    <i class="fal fa-users u-doughnut__label fa-10x text-info"></i>
+                                </div>
+
+                                <div class="media-body">
+                                    <h5 class="h6 text-muted text-uppercase mb-2">
+                                        User number
+                                    </h5>
+                                    <span class="h2 mb-0">{{ stats.users }}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-xl-3 mb-4">
+                        <div class="card">
+                            <div class="card-body media align-items-center px-xl-3">
+                                <div class="u-doughnut u-doughnut--70 mr-3 mr-xl-2 bg-soft-info rounded-circle border border-soft-info">
+                                    <i class="fal fa-paste u-doughnut__label fa-10x text-info"></i>
+                                </div>
+
+                                <div class="media-body">
+                                    <h5 class="h6 text-muted text-uppercase mb-2">
+                                        Ads number
+                                    </h5>
+                                    <span class="h2 mb-0">{{ stats.ads }}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-xl-3 mb-4">
+                        <div class="card">
+                            <div class="card-body media align-items-center px-xl-3">
+                                <div class="u-doughnut u-doughnut--70 mr-3 mr-xl-2 bg-soft-info rounded-circle border border-soft-info">
+                                    <i class="fal fa-quote-right u-doughnut__label fa-10x text-info"></i>
+                                </div>
+
+                                <div class="media-body">
+                                    <h5 class="h6 text-muted text-uppercase mb-2">
+                                        Bookings number
+                                    </h5>
+                                    <span class="h2 mb-0">{{ stats.bookings }}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-xl-3 mb-4">
+                        <div class="card">
+                            <div class="card-body media align-items-center px-xl-3">
+                                <div class="u-doughnut u-doughnut--70 mr-3 mr-xl-2 bg-soft-info rounded-circle border border-soft-info">
+                                    <i class="fal fa-comment u-doughnut__label fa-10x text-info"></i>
+                                </div>
+
+                                <div class="media-body">
+                                    <h5 class="h6 text-muted text-uppercase mb-2">
+                                        Comments number
+                                    </h5>
+                                    <span class="h2 mb-0">{{ stats.comments }}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% include 'admin/partials/footer.html.twig' %}
+        </div>
+    </main>
+{% endblock %}

@@ -2,7 +2,10 @@
 
 namespace App\Entity;
 
+use DateTime;
+use DateTimeInterface;
 use Doctrine\ORM\Mapping as ORM;
+use Exception;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
@@ -62,12 +65,12 @@ class Booking
     /**
      * @ORM\PrePersist()
      * @ORM\PreUpdate()
-     * @throws \Exception
+     * @throws Exception
      */
     public function prePersist()
     {
         if (empty($this->createdA)) {
-            $this->createdAt = new \DateTime();
+            $this->createdAt = new DateTime();
         }
 
         if ((empty($this->amount))) {
@@ -110,7 +113,7 @@ class Booking
         );
 
         $days = array_map(function ($dayTimestamp){
-           return new \DateTime(date('Y-m-d', $dayTimestamp));
+           return new DateTime(date('Y-m-d', $dayTimestamp));
         }, $result);
 
         return $days;
@@ -151,36 +154,36 @@ class Booking
         return $this;
     }
 
-    public function getStartDate(): ?\DateTimeInterface
+    public function getStartDate(): ?DateTimeInterface
     {
         return $this->startDate;
     }
 
-    public function setStartDate(\DateTimeInterface $startDate): self
+    public function setStartDate(DateTimeInterface $startDate): self
     {
         $this->startDate = $startDate;
 
         return $this;
     }
 
-    public function getEndDate(): ?\DateTimeInterface
+    public function getEndDate(): ?DateTimeInterface
     {
         return $this->endDate;
     }
 
-    public function setEndDate(\DateTimeInterface $endDate): self
+    public function setEndDate(DateTimeInterface $endDate): self
     {
         $this->endDate = $endDate;
 
         return $this;
     }
 
-    public function getCreatedAt(): ?\DateTimeInterface
+    public function getCreatedAt(): ?DateTimeInterface
     {
         return $this->createdAt;
     }
 
-    public function setCreatedAt(\DateTimeInterface $createdAt): self
+    public function setCreatedAt(DateTimeInterface $createdAt): self
     {
         $this->createdAt = $createdAt;
 

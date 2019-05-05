@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use Cocur\Slugify\Slugify;
+use DateTime;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
@@ -150,7 +151,7 @@ class Ad
             );
 
             $days = array_map(function ($dayTimestamp){
-                return  new \DateTime(date('Y-m-d', $dayTimestamp));
+                return  new DateTime(date('Y-m-d', $dayTimestamp));
             }, $result);
             $notAvailableDays = array_merge($notAvailableDays, $days);
         }
