@@ -110,57 +110,9 @@
 
                 <!-- Card row -->
                 <div class="row mt-5">
-                    <div class="col-md-4">
-                        <div class="card mb-3">
-                            <div class="card-header text-left">
-                                Lorem ipsum dolor
-                            </div>
-                            <img src="http://placehold.it/1000x400" alt="Home image"
-                                 style="height: 200px; width: 100%; display: block">
-                            <div class="card-body">
-                                <h5 class="card-title"><span class="font-weight-bold">49€/night</span> | 3 bedrooms</h5>
-                                <h6 class="card-subtitle mb-2 text-muted">No reviews yet</h6>
-                                <p class="card-text">Some quick example text to build on the card title and make up the
-                                    bulk of the card's content.</p>
-                                <a href="#" class="card-link">See more</a>
-                                <a href="#" class="card-link">Share to friend</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="card mb-3">
-                            <div class="card-header text-left">
-                                Lorem ipsum dolor
-                            </div>
-                            <img src="http://placehold.it/1000x400" alt="Home image"
-                                 style="height: 200px; width: 100%; display: block">
-                            <div class="card-body">
-                                <h5 class="card-title"><span class="font-weight-bold">49€/night</span> | 3 bedrooms</h5>
-                                <h6 class="card-subtitle mb-2 text-muted">No reviews yet</h6>
-                                <p class="card-text">Some quick example text to build on the card title and make up the
-                                    bulk of the card's content.</p>
-                                <a href="#" class="card-link">See more</a>
-                                <a href="#" class="card-link">Share to friend</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="card mb-3">
-                            <div class="card-header text-left">
-                                Lorem ipsum dolor
-                            </div>
-                            <img src="http://placehold.it/1000x400" alt="Home image"
-                                 style="height: 200px; width: 100%; display: block">
-                            <div class="card-body">
-                                <h5 class="card-title"><span class="font-weight-bold">49€/night</span> | 3 bedrooms</h5>
-                                <h6 class="card-subtitle mb-2 text-muted">No reviews yet</h6>
-                                <p class="card-text">Some quick example text to build on the card title and make up the
-                                    bulk of the card's content.</p>
-                                <a href="#" class="card-link">See more</a>
-                                <a href="#" class="card-link">Share to friend</a>
-                            </div>
-                        </div>
-                    </div>
+                    {% for data in ads %}
+                        {% include 'ad/_ad.html.twig' with {'ad': data.annonce} %}
+                    {% endfor %}
                 </div>
                 <!-- Card row -->
             </div>
@@ -187,44 +139,17 @@
                 <!-- End title row -->
 
                 <!-- Card row -->
-                <div class="row mt-5">
-                    <div class="col-md-4 mb-3">
-                        <div class="card">
-                            <div class="card-body">
-                                <h5 class="card-title">Special title treatment</h5>
-                                <div class="card-text">
-                                    <img class="float-left mr-3 rounded-circle" src="http://placehold.it/64x64" alt="Avatar">
-                                    <p>With supporting text below as a natural lead-in to additional content.</p>
+                <div class="card-columns">
+                    {% for data in users %}
+                        <a href="{{ path('user_show', {'slug': data.user.slug}) }}">
+                            <div class="card bg-gradient-success">
+                                <div class="card-body">
+                                    <img class="avatar rounded-circle mr-2 d-inline-block text-left" alt="Image placeholder" src="{{ data.user.picture }}" style="height: 50px">
+                                    <p class="card-text d-inline-block text-white text-left">{{ data.user.fullName }}</p>
                                 </div>
-                                <a href="#" class="btn btn-link float-right">See more</a>
                             </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4 mb-3">
-                        <div class="card">
-                            <div class="card-body">
-                                <h5 class="card-title">Special title treatment</h5>
-                                <div class="card-text">
-                                    <img class="float-left mr-3 rounded-circle" src="http://placehold.it/64x64" alt="Avatar">
-                                    <p>With supporting text below as a natural lead-in to additional content.</p>
-                                </div>
-                                <a href="#" class="btn btn-link float-right">See more</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4 mb-3">
-                        <div class="card">
-                            <div class="card-body">
-                                <h5 class="card-title">Special title treatment</h5>
-                                <div class="card-text">
-                                    <img class="float-left mr-3 rounded-circle" src="http://placehold.it/64x64" alt="Avatar">
-                                    <p>With supporting text below as a natural lead-in to additional content.</p>
-                                </div>
-                                <a href="#" class="btn btn-link float-right">See more</a>
-                            </div>
-                        </div>
-                    </div>
-
+                        </a>
+                    {% endfor %}
                 </div>
                 <!-- Card row -->
             </div>

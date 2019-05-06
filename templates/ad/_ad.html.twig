@@ -16,7 +16,7 @@
             {% if ad.comments | length > 0 %}
                 {% include 'partials/rating.html.twig' with {'rating': ad.avgRatings}%}
             {% else %}
-                <p>No rating</p>
+                <p class="m-0 p-0">No rating</p>
             {% endif %}
 
             <a class="text-decoration-none text-black-50" href="{{ url }}">

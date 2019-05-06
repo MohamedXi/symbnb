@@ -16,7 +16,7 @@
                     <ul class="u-sidebar-nav-menu u-sidebar-nav-menu--top-level">
                         <!-- Dashboard -->
                         <li class="u-sidebar-nav-menu__item">
-                            <a class="u-sidebar-nav-menu__link" href="{{ path('admin_dashboard') }}">
+                            <a class="u-sidebar-nav-menu__link {{ app.request.get('_route') == '_list' ? 'active' }}" href="{{ path('admin_dashboard') }}">
                                 <i class="fal fa-columns u-sidebar-nav-menu__item-icon"></i>
                                 <span class="u-sidebar-nav-menu__item-title">Dashboard</span>
                             </a>

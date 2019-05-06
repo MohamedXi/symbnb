@@ -6,9 +6,9 @@
     <main class="u-main" role="main">
         {% include 'admin/partials/sidebar.html.twig' %}
 
-        <div class="u-content">
+        {#<div class="u-content">
             <div class="u-body">
-                <div class="row pt-5">
+                <div class="row mt-5 p-0">
                     <div class="col-sm-6 col-xl-3 mb-4">
                         <div class="card">
                             <div class="card-body media align-items-center px-xl-3">
@@ -74,8 +74,321 @@
                         </div>
                     </div>
                 </div>
+                <div class="row">
+                    <div class="card">
+                        <header class="card-header">
+                            <h2 class="h3 card-header-title">The bookings list</h2>
+                        </header>
+
+                        <div class="card-body">
+                            <table class="table align-middle mb-0">
+                                <thead class="table-active text-muted">
+                                <tr class="small text-muted">
+                                    <th>#Id</th>
+                                    <th>Traveler</th>
+                                    <th>Booking date</th>
+                                    <th>Price</th>
+                                    <th>Action</th>
+                                </tr>
+                                </thead>
+
+                                <tbody>
+
+                                <tr>
+                                    <td class="align-middle">
+                                        <div class="media align-items-center">
+                                            <div class="media-body">
+                                                <h4 class="mb-0">421</h4>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="align-middle font-weight-semibold">
+                                        Ismael Mohamed
+                                    </td>
+                                    <td class="align-middle font-weight-semibold">06/05/2019 08:32</td>
+                                    <td class="align-middle font-weight-semibold">
+                                        192,00
+                                    </td>
+                                    <td class="text-center">
+                                        <a id="actions1Invoker" class="link-muted p-3" href="#!" aria-haspopup="true" aria-expanded="false" data-toggle="dropdown">
+                                            <i class="fal fa-ellipsis-v"></i>
+                                        </a>
+
+                                        <div class="dropdown-menu dropdown-menu-right dropdown" style="width: 150px; position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(513px, 179px, 0px);" aria-labelledby="actions1Invoker" x-placement="bottom-end">
+                                            <ul class="list-unstyled mb-0">
+                                                <li>
+                                                    <a class="d-flex align-items-center link-muted py-2 px-3" href="#!">
+                                                        <i class="fa fa-pencil mr-2"></i> Edit this…
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a class="d-flex align-items-center link-muted py-2 px-3" href="#!">
+                                                        <i class="fa fa-trash mr-2"></i> Remove
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="align-middle">
+                                        <div class="media align-items-center">
+                                            <div class="media-body">
+                                                <h4 class="mb-0">425</h4>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="align-middle font-weight-semibold">
+                                        Millie Russel
+                                    </td>
+                                    <td class="align-middle font-weight-semibold">04/05/2019 17:35</td>
+                                    <td class="align-middle font-weight-semibold">
+                                        336,00
+                                    </td>
+                                    <td class="text-center">
+                                        <a id="actions1Invoker" class="link-muted p-3" href="#!" aria-haspopup="true" aria-expanded="false" data-toggle="dropdown">
+                                            <i class="fal fa-ellipsis-v"></i>
+                                        </a>
+
+                                        <div class="dropdown-menu dropdown-menu-right dropdown" style="width: 150px; position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(513px, 227px, 0px);" aria-labelledby="actions1Invoker" x-placement="bottom-end">
+                                            <ul class="list-unstyled mb-0">
+                                                <li>
+                                                    <a class="d-flex align-items-center link-muted py-2 px-3" href="#!">
+                                                        <i class="fa fa-pencil mr-2"></i> Edit this…
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a class="d-flex align-items-center link-muted py-2 px-3" href="#!">
+                                                        <i class="fa fa-trash mr-2"></i> Remove
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="align-middle">
+                                        <div class="media align-items-center">
+                                            <div class="media-body">
+                                                <h4 class="mb-0">426</h4>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="align-middle font-weight-semibold">
+                                        Theresa Hickle
+                                    </td>
+                                    <td class="align-middle font-weight-semibold">04/05/2019 17:35</td>
+                                    <td class="align-middle font-weight-semibold">
+                                        192,00
+                                    </td>
+                                    <td class="text-center">
+                                        <a id="actions1Invoker" class="link-muted p-3" href="#!" aria-haspopup="true" aria-expanded="false" data-toggle="dropdown">
+                                            <i class="fal fa-ellipsis-v"></i>
+                                        </a>
+
+                                        <div class="dropdown-menu dropdown-menu-right dropdown" style="width: 150px; position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(1063px, 170px, 0px);" aria-labelledby="actions1Invoker" x-placement="bottom-end">
+                                            <ul class="list-unstyled mb-0">
+                                                <li>
+                                                    <a class="d-flex align-items-center link-muted py-2 px-3" href="#!">
+                                                        <i class="fa fa-pencil mr-2"></i> Edit this…
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a class="d-flex align-items-center link-muted py-2 px-3" href="#!">
+                                                        <i class="fa fa-trash mr-2"></i> Remove
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
             </div>
             {% include 'admin/partials/footer.html.twig' %}
+        </div> #}
+        <div class="u-content">
+            <div class="u-body">
+                <!-- Doughnut Chart -->
+                <div class="row mt-5">
+                    <div class="col-sm-6 col-xl-3 mb-4">
+                        <div class="card">
+                            <div class="card-body media align-items-center px-xl-3">
+                                <div class="u-doughnut u-doughnut--70 mr-3 mr-xl-2 bg-soft-info rounded-circle border border-soft-info">
+                                    <i class="fal fa-users u-doughnut__label fa-10x text-info"></i>
+                                </div>
+
+                                <div class="media-body">
+                                    <h5 class="h6 text-muted text-uppercase mb-2">
+                                        User number
+                                    </h5>
+                                    <span class="h2 mb-0">{{ stats.users }}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-xl-3 mb-4">
+                        <div class="card">
+                            <div class="card-body media align-items-center px-xl-3">
+                                <div class="u-doughnut u-doughnut--70 mr-3 mr-xl-2 bg-soft-info rounded-circle border border-soft-info">
+                                    <i class="fal fa-paste u-doughnut__label fa-10x text-info"></i>
+                                </div>
+
+                                <div class="media-body">
+                                    <h5 class="h6 text-muted text-uppercase mb-2">
+                                        Ads number
+                                    </h5>
+                                    <span class="h2 mb-0">{{ stats.ads }}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-xl-3 mb-4">
+                        <div class="card">
+                            <div class="card-body media align-items-center px-xl-3">
+                                <div class="u-doughnut u-doughnut--70 mr-3 mr-xl-2 bg-soft-info rounded-circle border border-soft-info">
+                                    <i class="fal fa-quote-right u-doughnut__label fa-10x text-info"></i>
+                                </div>
+
+                                <div class="media-body">
+                                    <h5 class="h6 text-muted text-uppercase mb-2">
+                                        Bookings number
+                                    </h5>
+                                    <span class="h2 mb-0">{{ stats.bookings }}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-xl-3 mb-4">
+                        <div class="card">
+                            <div class="card-body media align-items-center px-xl-3">
+                                <div class="u-doughnut u-doughnut--70 mr-3 mr-xl-2 bg-soft-info rounded-circle border border-soft-info">
+                                    <i class="fal fa-comment u-doughnut__label fa-10x text-info"></i>
+                                </div>
+
+                                <div class="media-body">
+                                    <h5 class="h6 text-muted text-uppercase mb-2">
+                                        Comments number
+                                    </h5>
+                                    <span class="h2 mb-0">{{ stats.comments }}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- End Doughnut Chart -->
+
+                <!-- Current Projects -->
+                <div class="row">
+                    <!-- Current Best ads -->
+                    <div class="col-md-6 mb-4 mb-md-0">
+                        <div class="card h-100">
+                            <header class="card-header d-flex align-items-center">
+                                <h2 class="h3 card-header-title">The best ads list <i class="fa fa-arrow-up text-success ml-1"></i></h2>
+                            </header>
+                            <div class="card-body p-0">
+                                <div class="table-responsive">
+                                    <table class="table align-middle mb-0">
+                                        <thead class="table-active text-muted">
+                                        <tr class="small text-muted text-uppercase">
+                                            <th>Ad #ID</th>
+                                            <th>Author</th>
+                                            <th class="text-center">Average</th>
+                                        </tr>
+                                        </thead>
+
+                                        <tbody>
+                                        {% for ad in bestAds %}
+                                            <tr>
+                                                <td class="align-middle">
+                                                    <div class="media">
+                                                        <div class="media-body">
+                                                            <h4 class="mb-0">{{ ad.id }}</h4>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                                <td class="align-middle font-weight-semibold">
+                                                    <img class="avatar-badge rounded-circle mr-2" src="{{ ad.picture }}"
+                                                         alt="" style="height: 35px">{{ ad.firstName }} {{ ad.lastName }}
+                                                </td>
+                                                <td class="align-middle text-center font-weight-semibold">{{ ad.note | number_format(1, ',', ' ') }}</td>
+                                            </tr>
+                                        {% endfor %}
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+
+                            <footer class="card-footer">
+                                <a class="u-link u-link--primary" href="{{ path('admin_ads_index') }}">All ads list</a>
+                            </footer>
+                        </div>
+                    </div>
+                    <!-- End Current Best ads -->
+
+                    <!-- Current Worst ads -->
+                    <div class="col-md-6 mb-4 mb-md-0">
+                        <div class="card h-100">
+                            <header class="card-header d-flex align-items-center">
+                                <h2 class="h3 card-header-title">The worst ads list <i class="fa fa-arrow-down text-danger ml-1"></i></h2>
+                            </header>
+                            <div class="card-body p-0">
+                                <div class="table-responsive">
+                                    <table class="table align-middle mb-0">
+                                        <thead class="table-active text-muted">
+                                        <tr class="small text-muted text-uppercase">
+                                            <th>Ad #ID</th>
+                                            <th>Author</th>
+                                            <th class="text-center">Average</th>
+                                        </tr>
+                                        </thead>
+
+                                        <tbody>
+                                        {% for ad in worstAds %}
+                                            <tr>
+                                                <td class="align-middle">
+                                                    <div class="media">
+                                                        <div class="media-body">
+                                                            <h4 class="mb-0">{{ ad.id }}</h4>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                                <td class="align-middle font-weight-semibold">
+                                                    <img class="avatar-badge rounded-circle mr-2" src="{{ ad.picture }}"
+                                                         alt="" style="height: 35px">{{ ad.firstName }} {{ ad.lastName }}
+                                                </td>
+                                                <td class="align-middle text-center font-weight-semibold">{{ ad.note | number_format(1, ',', ' ') }}</td>
+                                            </tr>
+                                        {% endfor %}
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+
+                            <footer class="card-footer">
+                                <a class="u-link u-link--primary" href="{{ path('admin_ads_index') }}">All ads list</a>
+                            </footer>
+                        </div>
+                    </div>
+                    <!-- End Current Worst ads -->
+                </div>
+                <!-- End Current Projects -->
+            </div>
+
+            <!-- Footer -->
+            <footer class="u-footer d-md-flex align-items-md-center text-center text-md-left text-muted text-muted">
+                <p class="h5 mb-2 mb-md-0">More freebies on <a class="link-muted" href="https://htmlstream.com/"
+                                                               target="_blank">Htmlstream</a></p>
+
+                <p class="h5 mb-0 ml-auto">
+                    © 2018 <a class="link-muted" href="https://htmlstream.com/" target="_blank">Htmlstream</a>. All
+                    Rights Reserved.
+                </p>
+            </footer>
+            <!-- End Footer -->
         </div>
     </main>
 {% endblock %}
