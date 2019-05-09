@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Repository\CommentRepository;
 use App\Service\Statistics;
 use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -13,9 +14,11 @@ class AdminDashboardController extends AbstractController
     /**
      * @Route("/admin", name="admin_dashboard")
      * @param ObjectManager $manager
+     * @param Statistics $statistics
+     * @param CommentRepository $commentRepository
      * @return Response
      */
-    public function dashboard(ObjectManager $manager, Statistics $statistics)
+    public function dashboard(ObjectManager $manager, Statistics $statistics, CommentRepository $commentRepository)
     {
         $stats      = $statistics->getStats();
         $bestAds    = $statistics->getAdsStats('DESC');
@@ -24,7 +27,8 @@ class AdminDashboardController extends AbstractController
         return $this->render('admin/dashboard/dashboard.html.twig', [
             'stats'     => $stats,
             'bestAds'   => $bestAds,
-            'worstAds'  => $worstAds
+            'worstAds'  => $worstAds,
+            'comment'   => $commentRepository
         ]);
     }
 }

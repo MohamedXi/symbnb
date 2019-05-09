@@ -6,31 +6,46 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <title>{% block title %}Welcome!{% endblock %} | Symbnb</title>
-    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-Bx4pytHkyTDy3aJKjGkGoHPt3tvv6zlwwjc3iqN7ktaiEMLDPqLSZYts2OjKcBx1" crossorigin="anonymous">
-    <link rel="stylesheet"
-          href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.8.0/css/bootstrap-datepicker.min.css"/>
-    <link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css"/>
-    <link rel="stylesheet" type="text/css" href="/css/app.css"/>
-    <link rel="stylesheet" type="text/css" href="{{ asset('css/responsive.css') }}"/>
-    <link rel="stylesheet" type="text/css" href="{{ asset('css/font-awesome.css') }}"/>
-    <link rel="stylesheet" type="text/css" href="{{ asset('css/admin.css') }}"/>
-    {% block stylesheets %}{% endblock %}
+    {% block stylesheets %}
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.8.0/css/bootstrap-datepicker.min.css" />
+        <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.8.1/css/all.css"
+              integrity="sha384-Bx4pytHkyTDy3aJKjGkGoHPt3tvv6zlwwjc3iqN7ktaiEMLDPqLSZYts2OjKcBx1" crossorigin="anonymous">
+        {{ encore_entry_link_tags('app') }}
+    {% endblock %}
 </head>
 <body>
-{# ------ navbar ------ #}
-<div class="container-fluid bg-white fixed-top">
-    {% include 'admin/partials/header.html.twig' %}
-</div>
-{% block body %}{% endblock %}
+{# ------ The main contents ------ #}
+<div class="sl-mainpanel">
+    {% include 'admin/partials/sidebar.html.twig' %} {# Call the sidebar #}
+    {% include 'admin/partials/header.html.twig' %} {# Call the header #}
 
-<script type="text/javascript" src="{{ asset('js/jquery-3.2.1.slim.min.js') }}"></script>
-<script type="text/javascript" src="{{ asset('js/popper.min.js') }}"></script>
-<script type="text/javascript" src="{{ asset('js/bootstrap.js') }}"></script>
-<script type="text/javascript" src="{{ asset('js/dashboard-page-scripts.js') }}"></script>
-<script type="text/javascript" src="{{ asset('js/font-controller.js') }}"></script>
-<script type="text/javascript" src="{{ asset('js/sidebar-nav.js') }}"></script>
-<script type="text/javascript" src="{{ asset('js/main.js') }}"></script>
-<script type="text/javascript" src="{{ asset('js/custom-select.js') }}"></script>
-{% block javascripts %}{% endblock %}
+    {# The breadcrumb #}
+    <nav class="breadcrumb sl-breadcrumb">
+        <a class="breadcrumb-item" href="index.html">Starlight</a>
+        <span class="breadcrumb-item active">Dashboard</span>
+    </nav>
+    {# The contents pages #}
+    <div class="sl-pagebody">{% for label, messages in app.flashes %}
+            <div class="alert alert-{{ label }} fade show align-items-center" role="alert">
+                <i class="fa fa-check-circle alert-icon mr-3"></i>
+                {% for message in messages %}
+                    {{ message | striptags }}
+                {% endfor %}
+                <button type="button" class="close" aria-label="Close" data-dismiss="alert">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+        {% endfor %}
+
+        {% block content %}
+            {# The contents is load here #}
+        {% endblock %}
+    </div>
+    {% include 'admin/partials/footer.html.twig' %} {# Call the footer #}
+</div>
+
+{% block javascripts %}
+    {{ encore_entry_script_tags('app') }}
+{% endblock %}
 </body>
 </html>

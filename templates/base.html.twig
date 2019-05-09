@@ -8,12 +8,10 @@
     <title>{% block title %}Welcome!{% endblock %} | Symbnb</title>
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.8.1/css/all.css"
           integrity="sha384-Bx4pytHkyTDy3aJKjGkGoHPt3tvv6zlwwjc3iqN7ktaiEMLDPqLSZYts2OjKcBx1" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.8.0/css/bootstrap-datepicker.min.css" />
-    <link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css"/>
-    <link rel="stylesheet" type="text/css" href="/css/app.css"/>
-    <link rel="stylesheet" type="text/css" href="{{ asset('css/responsive.css') }}"/>
-    <link rel="stylesheet" type="text/css" href="/css/global.css"/>
-    {% block stylesheets %}{% endblock %}
+    {% block stylesheets %}
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.8.0/css/bootstrap-datepicker.min.css" />
+        {{ encore_entry_link_tags('app') }}
+    {% endblock %}
 </head>
 <body>
 {# ------ navbar ------ #}
@@ -33,10 +31,8 @@
 {% endfor %}
 {% block body %}{% endblock %}
 {% include 'partials/footer.html.twig' %}
-
-<script type="text/javascript" src="/js/jquery-3.2.1.slim.min.js"></script>
-<script type="text/javascript" src="/js/popper.min.js"></script>
-<script type="text/javascript" src="/js/bootstrap.min.js"></script>
-{% block javascripts %}{% endblock %}
+{% block javascripts %}
+    {{ encore_entry_script_tags('app') }}
+{% endblock %}
 </body>
 </html>

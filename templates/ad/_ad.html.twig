@@ -1,6 +1,15 @@
 {% set url = path('ads_show', {'slug': ad.slug}) %}
-<div class="col-md-4">
-    <div class="card mb-3">
+<div class="col-md-4 mb-4">
+        <div class="card bd-0" style="background: linear-gradient(rgba(0, 62, 128, 0.5), rgba(0, 62, 128, 0.5))">
+            <img class="card-img img-fluid" src="{{ ad.coverImage }}" alt="Image">
+            <div class="card-img-overlay pd-30 d-flex align-items-start flex-column">
+                <h6 class="tx-white mg-b-15">{{ ad.title|length > 25? ad.title|slice(0, 25) ~ '…' : ad.title }}</h6>
+                <p class="tx-white tx-white-7 mg-b-auto">{{ ad.title|length > 25? ad.title|slice(0, 25) ~ '…' : ad.title  }}</p>
+                <p class="mg-b-0"><a href="{{ url }}" class="tx-white">See more</a></p>
+            </div><!-- card-img-overlay -->
+        </div>
+    </div>
+    {# <div class="card mb-3">
         <div class="card-header text-center">
             <span class="font-weight-bold">{{ ad.price }}&euro;/night</span> | {{ ad.rooms }} bedrooms
         </div>
@@ -29,5 +38,4 @@
                 </a>
             {% endif %}
         </div>
-    </div>
-</div>
+    </div> #}

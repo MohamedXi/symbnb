@@ -8,10 +8,36 @@
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.8.1/css/all.css"
           integrity="sha384-Bx4pytHkyTDy3aJKjGkGoHPt3tvv6zlwwjc3iqN7ktaiEMLDPqLSZYts2OjKcBx1" crossorigin="anonymous">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link rel="stylesheet" type="text/css" href="{{ asset('css/admin.css') }}"/>
+    <link rel="stylesheet" type="text/css" href="{{ asset('build/app.css') }}"/>
     <title>Document</title>
 </head>
 <body>
+
+<div class="d-flex align-items-center justify-content-center bg-sl-primary ht-100v">
+
+    <div class="login-wrapper wd-300 wd-xs-350 pd-25 pd-xs-40 bg-white">
+        <div class="signin-logo tx-center tx-24 tx-bold tx-inverse">Symbnb <span class="tx-info tx-normal">admin</span></div>
+        <div class="tx-center mg-b-60">Access to the Symbnb dashboard</div>
+
+        <form method="post">
+            <div class="form-group">
+                <input class="form-control" placeholder="Enter your username" name="_username" type="email" value="{{ lastUsername }}">
+            </div><!-- form-group -->
+            <div class="form-group">
+                <input class="form-control" name="_password" type="password" placeholder="Enter your password">
+                <a href="" class="tx-info tx-12 d-block mg-t-10">Forgot password?</a>
+            </div><!-- form-group -->
+            <button type="submit" class="btn btn-info btn-block">Sign In</button>
+        </form>
+
+        <div class="mg-t-60 tx-center">Go to <a href="{{ path('homepage') }}" class="tx-info">Symbnb</a></div>
+    </div><!-- login-wrapper -->
+</div><!-- d-flex -->
+
+
+
+</body>
+{# <body>
     <main class="container-fluid w-100" role="main">
         <div class="row">
             <div class="col-lg-6 d-flex flex-column justify-content-center align-items-center bg-white mnh-100vh">
@@ -69,5 +95,5 @@
             </div>
         </div>
     </main>
-</body>
+</body> #}
 </html>

@@ -1,19 +1,28 @@
-<header class="u-header">
-    <div class="u-header-left">
-        <a class="u-header-logo" href="index.html">
-            <img class="u-logo-desktop" src="https://htmlstream.com/preview/stream-dashboard-ui-kit/assets/img/logo.png" alt="Stream Dashboard" width="160">
-            <img class="img-fluid u-logo-mobile" src="https://htmlstream.com/preview/stream-dashboard-ui-kit/assets/img/logo-mobile.png" alt="Stream Dashboard"
-                 width="50">
-        </a>
-    </div>
+<div class="sl-header">
+    <div class="sl-header-left">
+        <div class="navicon-left hidden-md-down"><a id="btnLeftMenu" href=""><i class="fal fa-align-left"></i></a></div>
+        <div class="navicon-left hidden-lg-up"><a id="btnLeftMenuMobile" href=""><i class="fal fa-align-left"></i></a></div>
+    </div><!-- sl-header-left -->
+    <div class="sl-header-right">
+        <nav class="nav">
+            <div class="dropdown">
+                <a href="" class="nav-link nav-link-profile" data-toggle="dropdown">
+                    <span class="logged-name">{{ app.user.fullName }}</span>
+                    <img src="{{ app.user.picture }}" class="wd-32 rounded-circle" alt="">
+                </a>
+                <div class="dropdown-menu dropdown-menu-header wd-200">
+                    <ul class="list-unstyled user-profile-nav">
+                        <li><a href="{{ path('homepage') }}" target="_blank"><i class="icon ion-ios-person-outline"></i> Go to Symbnb</a></li>
+                        <li><a href="{{ path('admin_account_logout') }}"><i class="icon ion-power"></i> Sign Out</a></li>
+                    </ul>
+                </div><!-- dropdown-menu -->
+            </div><!-- dropdown -->
+        </nav>
+    </div><!-- sl-header-right -->
+</div>
 
-    <div class="u-header-middle">
-        <a class="js-sidebar-invoker u-sidebar-invoker" href="#!" data-is-close-all-except-this="true"
-           data-target="#sidebar">
-            <i class="fa fal fa-align-left u-sidebar-invoker__icon--open"></i>
-            <i class="fa fal fa-align-left u-sidebar-invoker__icon--close"></i>
-        </a>
-    </div>
+
+{# <header class="u-header">
 
     <div class="u-header-right">
         <!-- User Profile -->
@@ -80,4 +89,4 @@
         </div>
         <!-- End User Profile -->
     </div>
-</header>
+</header> #}

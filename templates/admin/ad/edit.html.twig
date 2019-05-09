@@ -5,141 +5,111 @@
 {% form_theme form _self %}
 
 {% block body %}
-    <main class="u-main" role="main">
-        {% include 'admin/partials/sidebar.html.twig' %}
+    {% block content %}
+        <div class="row row-sm mg-t-20">
+            <div class="col-xl-8">
+                <div class="card pd-20 pd-sm-40">
+                    <h6 class="card-body-title">Top Label Layout</h6>
+                    <p class="mg-b-20 mg-sm-b-30">A form with a label on top of each form control.</p>
 
-        <div class="u-content">
-            <div class="u-body">
-                <h2 class="h2 font-weight-semibold mb-4">Edit the ad : {{ ad.title }}</h2>
+                    <div class="form-layout">
+                        {{ form_start(form) }}
+                        {{ form_widget(form) }}
+                        <button type="submit" class="btn btn-primary">Save this ad</button>
+                        {{ form_end(form) }}
 
-                <div class="row">
-                    <div class="col">
-                        <div class="card">
-                            <div class="card-body">
-                                {{ form_start(form) }}
-                                {{ form_widget(form) }}
-                                <button type="submit" class="btn btn-primary">Save this ad</button>
-                                {{ form_end(form) }}
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col">
-                        <div class="card">
-                            <header class="card-header">
-                                <h2 class="h3 card-header-title">The bookings list</h2>
-                            </header>
+                        <div class="form-layout-footer">
 
-                            <div class="card-body">
-                                <table class="table align-middle mb-0">
-                                    <thead class="table-active text-muted">
-                                    <tr class="small text-muted">
-                                        <th>#Id</th>
-                                        <th>Traveler</th>
-                                        <th>Booking date</th>
-                                        <th>Price</th>
-                                        <th>Action</th>
-                                    </tr>
-                                    </thead>
-
-                                    <tbody>
-
-                                    {% for booking in ad.bookings %}
-                                        <tr>
-                                            <td class="align-middle">
-                                                <div class="media align-items-center">
-                                                    <div class="media-body">
-                                                        <h4 class="mb-0">{{ booking.id }}</h4>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                            <td class="align-middle font-weight-semibold">
-                                                {{ booking.booker.fullName }}
-                                            </td>
-                                            <td class="align-middle font-weight-semibold">{{ booking.createdAt | date('d/m/Y H:i') }}</td>
-                                            <td class="align-middle font-weight-semibold">
-                                                {{ booking.amount | number_format(2, ',', ' ') }}
-                                            </td>
-                                            <td class="text-center">
-                                                <a id="actions1Invoker" class="link-muted p-3" href="#!"
-                                                   aria-haspopup="true" aria-expanded="false" data-toggle="dropdown">
-                                                    <i class="fal fa-ellipsis-v"></i>
-                                                </a>
-
-                                                <div class="dropdown-menu dropdown-menu-right dropdown"
-                                                     style="width: 150px; position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(1063px, 170px, 0px);"
-                                                     aria-labelledby="actions1Invoker" x-placement="bottom-end">
-                                                    <ul class="list-unstyled mb-0">
-                                                        <li>
-                                                            <a class="d-flex align-items-center link-muted py-2 px-3"
-                                                               href="#!">
-                                                                <i class="fa fa-pencil mr-2"></i> Edit this…
-                                                            </a>
-                                                        </li>
-                                                        <li>
-                                                            <a class="d-flex align-items-center link-muted py-2 px-3"
-                                                               href="#!">
-                                                                <i class="fa fa-trash mr-2"></i> Remove
-                                                            </a>
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                    {% endfor %}
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-
-                        <div class="card mt-4">
-                            <header class="card-header d-md-flex align-items-center">
-                                <h2 class="h3 card-header-title">The comments</h2>
-                            </header>
-
-                            <div class="card-body p-0 m-0 rounded">
-                                <div class="tab-content" id="commentsTabs">
-                                    <!-- Tabs Content -->
-                                    <div class="tab-pane fade show active" id="commentsTab1" role="tabpanel">
-                                        <div class="list-group list-lg-group list-group-flush">
-                                            {% for comment in ad.comments %}
-                                                <!-- Comment -->
-                                                <a class="list-group-item list-group-item-action" href="#">
-                                                    <div class="media">
-                                                        <img class="u-avatar rounded-circle mr-3"
-                                                             src="{{ ad.author.picture }}" alt="Image description">
-
-                                                        <div class="media-body">
-                                                            <div class="d-md-flex align-items-center">
-                                                                <h4 class="mb-1">
-                                                                    {{ comment.author.fullName }}
-
-                                                                    {% if comment.rating > 3 %}
-                                                                        <span class="badge badge-soft-success mx-1">{{ comment.rating }}</span>
-                                                                    {% else %}
-                                                                        <span class="badge badge-soft-danger mx-1">{{ comment.rating }}</span>
-                                                                    {% endif %}
-                                                                </h4>
-                                                                <small class="text-muted ml-md-auto">{{ comment.createdAt | date('d M   Y') }}</small>
-                                                            </div>
-
-                                                            <p class="mb-0">{{ comment.content | length > 25? comment.content | slice(0, 50) ~ '…' : comment.content }}</p>
-                                                        </div>
-                                                    </div>
-                                                </a>
-                                                <!-- End Comment -->
-                                            {% endfor %}
+                        </div><!-- form-layout-footer -->
+                    </div><!-- form-layout -->
+                </div>
+            </div><!-- col-8 -->
+            <div class="col-xl-4 mg-t-20 mg-xl-t-0">
+                <div class="card widget-messages mg-xl-t-0">
+                    <div class="card-header">
+                        <span>Last comments</span>
+                        <a href=""><i class="icon ion-more"></i></a>
+                    </div><!-- card-header -->
+                    <div class="list-group list-group-flush">
+                        {% for comment in ad.comments %}
+                            {% if comment == true %}
+                                <a class="list-group-item list-group-item-action media">
+                                    <img src="{{ ad.author.picture }}" alt="">
+                                    <div class="media-body">
+                                        <div class="msg-top">
+                                            <span>{{ comment.author.fullName }} <small>{{ comment.createdAt | date('d M   Y') }}</small></span>
+                                            <span class="badge badge-info badge-pill text-white">{{ comment.rating }}</span>
                                         </div>
+                                        <p class="msg-summary">{{ comment.content | length > 25? comment.content | slice(0, 50) ~ '…' : comment.content }}</p>
+                                    </div><!-- media-body -->
+                                </a><!-- list-group-item -->
+                                {% else %}
+                                <p class="text-light">No comment yet</p>
+                            {% endif %}
+                        {% endfor %}
+                    </div><!-- list-group -->
+                    <div class="card-footer">
+                        <a href="{{ path('admin_comments_index') }}" class="tx-12"><i class="fa fa-angle-down mg-r-3"></i>See more</a>
+                    </div><!-- card-footer -->
+                </div><!-- card -->
+            </div><!-- col-3 -->
+        </div><!-- row -->
+        <div class="row">
+
+        </div>
+        {#<main class="u-main" role="main">
+            {% include 'admin/partials/sidebar.html.twig' %}
+
+                            <div class="card mt-4">
+                                <header class="card-header d-md-flex align-items-center">
+                                    <h2 class="h3 card-header-title">The comments</h2>
+                                </header>
+
+                                <div class="card-body p-0 m-0 rounded">
+                                    <div class="tab-content" id="commentsTabs">
+                                        <!-- Tabs Content -->
+                                        <div class="tab-pane fade show active" id="commentsTab1" role="tabpanel">
+                                            <div class="list-group list-lg-group list-group-flush">
+                                                {% for comment in ad.comments %}
+                                                    <!-- Comment -->
+                                                    <a class="list-group-item list-group-item-action" href="#">
+                                                        <div class="media">
+                                                            <img class="u-avatar rounded-circle mr-3"
+                                                                 src="{{ ad.author.picture }}" alt="Image description">
+
+                                                            <div class="media-body">
+                                                                <div class="d-md-flex align-items-center">
+                                                                    <h4 class="mb-1">
+                                                                        {{ comment.author.fullName }}
+
+                                                                        {% if comment.rating > 3 %}
+                                                                            <span class="badge badge-soft-success mx-1">{{ comment.rating }}</span>
+                                                                        {% else %}
+                                                                            <span class="badge badge-soft-danger mx-1">{{ comment.rating }}</span>
+                                                                        {% endif %}
+                                                                    </h4>
+                                                                    <small class="text-muted ml-md-auto">{{ comment.createdAt | date('d M   Y') }}</small>
+                                                                </div>
+
+                                                                <p class="mb-0">{{ comment.content | length > 25? comment.content | slice(0, 50) ~ '…' : comment.content }}</p>
+                                                            </div>
+                                                        </div>
+                                                    </a>
+                                                    <!-- End Comment -->
+                                                {% endfor %}
+                                            </div>
+                                        </div>
+                                        <!-- End Tabs Content -->
                                     </div>
-                                    <!-- End Tabs Content -->
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
+                {% include 'admin/partials/footer.html.twig' %}
             </div>
-            {% include 'admin/partials/footer.html.twig' %}
-        </div>
-    </main>
+        </main> #}
+    {% endblock %}
 {% endblock %}
 
 {% block _annonce_images_entry_row %}
@@ -151,9 +121,9 @@
         <div class="row">
             <div class="col-11">
                 <div class="row" id="block_{{ id }}">
-                    <div class="col-2">
+                    <div class="col-1">
                         {% if value %}
-                            <img class="u-avatar rounded-circle" src="{{ value.url }}" alt="">
+                            <img src="{{ value.url }}" style="height: 35px; width: auto" alt="">
                         {% endif %}
                     </div>
                     <div class="col">
@@ -176,5 +146,6 @@
             })
         })
     </script>
+    {{ encore_entry_script_tags('app') }}
 {% endblock %}
 

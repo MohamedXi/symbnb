@@ -3,96 +3,72 @@
 {% block title %}All comments{% endblock %}
 
 {% block body %}
-    <main class="u-main" role="main">
-        {% include 'admin/partials/sidebar.html.twig' %}
-
-        <div class="u-content">
-            <div class="u-body">
-                {% for label, messages in app.flashes %}
-                    <div class="alert alert-{{ label }} fade show align-items-center mt-5" role="alert">
-                        <i class="fa fa-check-circle alert-icon mr-3"></i>
-                        {% for message in messages %}
-                            {{ message | striptags }}
-                        {% endfor %}
-                        <button type="button" class="close" aria-label="Close" data-dismiss="alert">
-                            <span aria-hidden="true">×</span>
-                        </button>
-                    </div>
-                {% endfor %}
-                <div class="card mt-5">
-                    <header class="card-header">
-                        <h2 class="h3 card-header-title">Bookings list</h2>
-                    </header>
-                    <div class="card-body">
-                        <!-- Table -->
-                        <div class="table-responsive">
-                            <table class="table table-hover pre-scrollable">
-                                <thead>
-                                <tr>
-                                    <th scope="col">#</th>
-                                    <th scope="col">Date</th>
-                                    <th scope="col">Author</th>
-                                    <th scope="col">Comment</th>
-                                    <th class="text-center" scope="col">Rating</th>
-                                    <th class="text-center" scope="col">Ad</th>
-                                    <th class="text-center" scope="col">Action</th>
-                                </tr>
-                                </thead>
-
-                                <tbody>
-                                {% for comment in pagination.data %}
-                                    <tr>
-                                        <td>{{ comment.id }}</td>
-                                        <td>{{ comment.createdAt | date('d/m/Y') }}</td>
-                                        <td><img src="{{ comment.author.picture }}" class="rounded-circle mr-2"
-                                                 style="height: 35px"
-                                                 alt="{{ comment.author.fullName }}'s avatar"/>{{ comment.author.fullName }}
-                                        </td>
-                                        <td>{{ comment.content | length > 25? comment.content | slice(0, 50) ~ '…' : comment.content }}</td>
-                                        <td>
-                                            {% if comment.rating > 3 %}
-                                                <span class="badge badge-soft-success mx-1">{{ comment.rating }}</span>
-                                            {% else %}
-                                                <span class="badge badge-soft-danger mx-1">{{ comment.rating }}</span>
-                                            {% endif %}
-                                        </td>
-                                        <td>{{ comment.ad.id }}</td>
-                                        <td class="text-center">
-                                            <a id="actions1Invoker" class="link-muted p-3" href="#!"
-                                               aria-haspopup="true" aria-expanded="false" data-toggle="dropdown">
-                                                <i class="fal fa-ellipsis-v"></i>
-                                            </a>
-
-                                            <div class="dropdown-menu dropdown-menu-right dropdown"
-                                                 style="width: 150px; position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(1063px, 170px, 0px);"
-                                                 aria-labelledby="actions1Invoker" x-placement="bottom-end">
-                                                <ul class="list-unstyled mb-0">
-                                                    <li>
-                                                        <a class="d-flex align-items-center link-muted py-2 px-3"
-                                                           href="{{ path('admin_comments_edit', {'id': comment.id}) }}">
-                                                            <i class="fa fa-pencil mr-2"></i> Edit this…
-                                                        </a>
-                                                    </li>
-                                                    <li>
-                                                        <a class="d-flex align-items-center link-muted py-2 px-3"
-                                                           href="{{ path('admin_comments_delete', {'id': comment.id}) }}">
-                                                            <i class="fa fa-trash mr-2"></i> Remove
-                                                        </a>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                {% endfor %}
-                                </tbody>
-                            </table>
-                        </div>
-                        <!-- End Table -->
-                    </div>
+    {% block content %}
+        <div class="card overflow-hidden">
+            <div class="card-header bg-transparent pd-y-20 d-sm-flex align-items-center justify-content-between">
+                <div class="mg-b-20 mg-sm-b-0">
+                    <h6 class="card-title mg-b-5 tx-13 tx-uppercase tx-bold tx-spacing-1">All comment</h6>
+                    <span class="d-block tx-12">October 23, 2017</span>
                 </div>
-                {{ pagination.display() }}
-            </div>
-            {% include 'admin/partials/footer.html.twig' %}
-        </div>
-    </main>
+            </div><!-- card-header -->
+            <div class="card-body pd-0 bd-color-gray-lighter">
+                <div class="table-responsive">
+                    <table class="table table-striped mg-b-0">
+                        <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Date</th>
+                            <th scope="col">Author</th>
+                            <th scope="col">Comment</th>
+                            <th class="text-center" scope="col">Rating</th>
+                            <th class="text-center" scope="col">Ad ID</th>
+                            <th class="text-center" scope="col">Action</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for comment in pagination.data %}
+                            <tr>
+                                <td>{{ comment.id }}</td>
+                                <td>{{ comment.createdAt | date('d/m/Y') }}</td>
+                                <td><img src="{{ comment.author.picture }}" class="rounded-circle mr-2"
+                                         style="height: 35px"
+                                         alt="{{ comment.author.fullName }}'s avatar"/>{{ comment.author.fullName }}
+                                </td>
+                                <td>{{ comment.content | length > 25? comment.content | slice(0, 50) ~ '…' : comment.content }}</td>
+                                <td>{{ comment.rating }}</td>
+                                <td>{{ comment.ad.id }}</td>
+                                <td class="align-middle text-center">
+                                    <a id="actions1Invoker" class="link-muted p-3" href="#!"
+                                       aria-haspopup="true" aria-expanded="false" data-toggle="dropdown">
+                                        <i class="fal fa-ellipsis-v"></i>
+                                    </a>
+
+                                    <div class="dropdown-menu dropdown-menu-right dropdown"
+                                         style="width: 150px; position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(1063px, 170px, 0px);"
+                                         aria-labelledby="actions1Invoker" x-placement="bottom-end">
+                                        <ul class="list-unstyled mb-0">
+                                            <li>
+                                                <a class="d-flex align-items-center link-muted py-2 px-3"
+                                                   href="{{ path('admin_comments_edit', {'id': comment.id}) }}">
+                                                    <i class="fal fa-pen mr-2"></i> Edit this ad
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a class="d-flex align-items-center link-muted py-2 px-3"
+                                                   href="{{ path('admin_comments_delete', {'id': comment.id}) }}">
+                                                    <i class="fal fa-trash-alt mr-2"></i> Delete this ad
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div><!-- card-body -->
+        </div><!-- card -->
+        {{ pagination.display() }}
+    {% endblock %}
 {% endblock %}

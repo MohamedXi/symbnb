@@ -1,20 +1,35 @@
+{# <div class="dataTables_info" id="datatable2_info" role="status" aria-live="polite">Showing 1 to 10 of 57 entries</div>
+<div class="dataTables_paginate paging_simple_numbers" id="datatable2_paginate">
+    <a class="paginate_button previous disabled" aria-controls="datatable2" data-dt-idx="0" tabindex="0"
+       id="datatable2_previous">Previous
+    </a>
+    <span>
+        <a class="paginate_button current" aria-controls="datatable2" data-dt-idx="1" tabindex="0">1</a>
+        <a class="paginate_button " aria-controls="datatable2" data-dt-idx="2" tabindex="0">2</a>
+        <a class="paginate_button " aria-controls="datatable2" data-dt-idx="3" tabindex="0">3</a>
+        <a class="paginate_button " aria-controls="datatable2" data-dt-idx="4" tabindex="0">4</a>
+        <a class="paginate_button " aria-controls="datatable2" data-dt-idx="5" tabindex="0">5</a>
+        <a class="paginate_button " aria-controls="datatable2" data-dt-idx="6" tabindex="0">6</a>
+    </span>
+    <a class="paginate_button next" aria-controls="datatable2" data-dt-idx="7" tabindex="0" id="datatable2_next">Next</a>
+</div> #}
 <div class="row justify-content-between align-items-center mb-3 mt-3">
     <div class="col-sm">
         <nav aria-label="Bootstrap Pagination Example">
             <ul class="pagination mb-0">
-                <li class="page-item">
-                    <a class="page-link btn rounded-left pager-btn rounded-0 {% if page == 1 %}disabled{% endif %}"
+                <li>
+                    <a class="page-link btn btn-light rounded-left pager-btn rounded-0 {% if page == 1 %}disabled{% endif %}"
                        href="{{ path(route, {'page': page - 1}) }}">← <span
                                 class="ml-1 d-none d-xl-inline-block">Previous</span></a>
                 </li>
                 {% for i in 1..pages %}
-                    <li class="page-item {% if page == i %}active{% endif %}">
+                    <li class="{% if page == i %}active{% endif %}">
                         <a class="page-link"
                            href="{{ path(route, {'page': i}) }}">{{ i }}</a>
                     </li>
                 {% endfor %}
-                <li class="page-item">
-                    <a class="page-link btn rounded-right pager-btn rounded-0 {% if page == pages %}disabled{% endif %}"
+                <li>
+                    <a class="page-link btn btn-light rounded-right pager-btn rounded-0 {% if page == pages %}disabled{% endif %}"
                        href="{{ path(route, {'page': page + 1}) }}"><span
                                 class="mr-1 d-none d-xl-inline-block">Next</span> →</a>
                 </li>

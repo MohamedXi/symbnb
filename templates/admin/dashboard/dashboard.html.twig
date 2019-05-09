@@ -3,7 +3,7 @@
 {% block title %}Hello AdminDashboardController!{% endblock %}
 
 {% block body %}
-    <main class="u-main" role="main">
+    {#<main class="u-main" role="main">
         {% include 'admin/partials/sidebar.html.twig' %}
 
         {#<div class="u-content">
@@ -209,7 +209,7 @@
                 </div>
             </div>
             {% include 'admin/partials/footer.html.twig' %}
-        </div> #}
+        </div>
         <div class="u-content">
             <div class="u-body">
                 <!-- Doughnut Chart -->
@@ -390,5 +390,181 @@
             </footer>
             <!-- End Footer -->
         </div>
-    </main>
+    </main> #}
+
+    {% block content %}
+        <div class="row row-sm">
+            <div class="col-sm-6 col-xl-3">
+                <div class="card pd-20 bg-primary">
+                    <div class="d-flex justify-content-between align-items-center mg-b-10">
+                        <h6 class="tx-11 tx-uppercase mg-b-0 tx-spacing-1 tx-white">User number</h6>
+                        <a href="" class="tx-white-8 hover-white"><i class="icon ion-android-more-horizontal"></i></a>
+                    </div><!-- card-header -->
+                    <div class="d-flex align-items-center justify-content-between">
+                        <span class="sparkline2"><canvas
+                                    style="display: inline-block; width: 59px; height: 50px; vertical-align: top;"
+                                    width="59" height="50"></canvas></span>
+                        <h3 class="mg-b-0 tx-white tx-lato tx-bold">{{ stats.users }}</h3>
+                    </div><!-- card-body -->
+                    <div class="d-flex align-items-center justify-content-between mg-t-15 bd-t bd-white-2 pd-t-10">
+                        <div>
+                            <span class="tx-11 tx-white-6">Gross Sales</span>
+                            <h6 class="tx-white mg-b-0">$2,210</h6>
+                        </div>
+                        <div>
+                            <span class="tx-11 tx-white-6">Tax Return</span>
+                            <h6 class="tx-white mg-b-0">$320</h6>
+                        </div>
+                    </div><!-- -->
+                </div><!-- card -->
+            </div><!-- col-3 -->
+            <div class="col-sm-6 col-xl-3 mg-t-20 mg-sm-t-0">
+                <div class="card pd-20 bg-info">
+                    <div class="d-flex justify-content-between align-items-center mg-b-10">
+                        <h6 class="tx-11 tx-uppercase mg-b-0 tx-spacing-1 tx-white">Ad number</h6>
+                        <a href="" class="tx-white-8 hover-white"><i class="icon ion-android-more-horizontal"></i></a>
+                    </div><!-- card-header -->
+                    <div class="d-flex align-items-center justify-content-between">
+                        <span class="sparkline2"><canvas
+                                    style="display: inline-block; width: 59px; height: 50px; vertical-align: top;"
+                                    width="59" height="50"></canvas></span>
+                        <h3 class="mg-b-0 tx-white tx-lato tx-bold">{{ stats.ads }}</h3>
+                    </div><!-- card-body -->
+                    <div class="d-flex align-items-center justify-content-between mg-t-15 bd-t bd-white-2 pd-t-10">
+                        <div>
+                            <span class="tx-11 tx-white-6">Gross Sales</span>
+                            <h6 class="tx-white mg-b-0">$2,210</h6>
+                        </div>
+                        <div>
+                            <span class="tx-11 tx-white-6">Tax Return</span>
+                            <h6 class="tx-white mg-b-0">$320</h6>
+                        </div>
+                    </div><!-- -->
+                </div><!-- card -->
+            </div><!-- col-3 -->
+            <div class="col-sm-6 col-xl-3 mg-t-20 mg-xl-t-0">
+                <div class="card pd-20 bg-purple">
+                    <div class="d-flex justify-content-between align-items-center mg-b-10">
+                        <h6 class="tx-11 tx-uppercase mg-b-0 tx-spacing-1 tx-white">Bookings number</h6>
+                        <a href="" class="tx-white-8 hover-white"><i class="icon ion-android-more-horizontal"></i></a>
+                    </div><!-- card-header -->
+                    <div class="d-flex align-items-center justify-content-between">
+                        <span class="sparkline2"><canvas
+                                    style="display: inline-block; width: 59px; height: 50px; vertical-align: top;"
+                                    width="59" height="50"></canvas></span>
+                        <h3 class="mg-b-0 tx-white tx-lato tx-bold">{{ stats.bookings }}</h3>
+                    </div><!-- card-body -->
+                    <div class="d-flex align-items-center justify-content-between mg-t-15 bd-t bd-white-2 pd-t-10">
+                        <div>
+                            <span class="tx-11 tx-white-6">Gross Sales</span>
+                            <h6 class="tx-white mg-b-0">$2,210</h6>
+                        </div>
+                        <div>
+                            <span class="tx-11 tx-white-6">Tax Return</span>
+                            <h6 class="tx-white mg-b-0">$320</h6>
+                        </div>
+                    </div><!-- -->
+                </div><!-- card -->
+            </div><!-- col-3 -->
+            <div class="col-sm-6 col-xl-3 mg-t-20 mg-xl-t-0">
+                <div class="card pd-20 bg-sl-primary">
+                    <div class="d-flex justify-content-between align-items-center mg-b-10">
+                        <h6 class="tx-11 tx-uppercase mg-b-0 tx-spacing-1 tx-white">Comment number</h6>
+                        <a href="" class="tx-white-8 hover-white"><i class="icon ion-android-more-horizontal"></i></a>
+                    </div><!-- card-header -->
+                    <div class="d-flex align-items-center justify-content-between">
+                        <span class="sparkline2"><canvas
+                                    style="display: inline-block; width: 59px; height: 50px; vertical-align: top;"
+                                    width="59" height="50"></canvas></span>
+                        <h3 class="mg-b-0 tx-white tx-lato tx-bold">{{ stats.comments }}</h3>
+                    </div><!-- card-body -->
+                    <div class="d-flex align-items-center justify-content-between mg-t-15 bd-t bd-white-2 pd-t-10">
+                        <div>
+                            <span class="tx-11 tx-white-6">Gross Sales</span>
+                            <h6 class="tx-white mg-b-0">$2,210</h6>
+                        </div>
+                        <div>
+                            <span class="tx-11 tx-white-6">Tax Return</span>
+                            <h6 class="tx-white mg-b-0">$320</h6>
+                        </div>
+                    </div><!-- -->
+                </div><!-- card -->
+            </div><!-- col-3 -->
+        </div><!-- row -->
+
+        <div class="row row-sm mg-t-20">
+            <div class="card overflow-hidden col-xl-6">
+                <div class="card-header bg-transparent pd-y-20 d-sm-flex align-items-center justify-content-between">
+                    <div class="mg-b-20 mg-sm-b-0">
+                        <h6 class="card-title mg-b-5 tx-13 tx-uppercase tx-bold tx-spacing-1">The best ads</h6>
+                        <span class="d-block tx-12">October 23, 2017</span>
+                    </div>
+                    <div class="btn-group" role="group" aria-label="Basic example">
+                        <a href="{{ path('admin_ads_index') }}" class="btn btn-secondary tx-12">See all ads</a>
+                    </div>
+                </div><!-- card-header -->
+                <div class="card-body pd-0 bd-color-gray-lighter">
+                    <div class="table-responsive">
+                        <table class="table mg-b-0">
+                            <thead>
+                            <tr>
+                                <th>id</th>
+                                <th>Author</th>
+                                <th>Ad title</th>
+                                <th>Average</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% for ad in bestAds %}
+                                <tr>
+                                    <td>{{ ad.id }}</td>
+                                    <td><img class="avatar-badge rounded-circle mr-2" src="{{ ad.picture }}"
+                                             alt="" style="height: 35px">{{ ad.firstName }} {{ ad.lastName }}</td>
+                                    <td>{{ ad.title }}</td>
+                                    <td class="text-center">{{ ad.note | number_format('1', ',', ' ') }}</td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div><!-- card-body -->
+            </div><!-- card -->
+            <div class="card overflow-hidden col-xl-6">
+                <div class="card-header bg-transparent pd-y-20 d-sm-flex align-items-center justify-content-between">
+                    <div class="mg-b-20 mg-sm-b-0">
+                        <h6 class="card-title mg-b-5 tx-13 tx-uppercase tx-bold tx-spacing-1">The worst ads</h6>
+                        <span class="d-block tx-12">October 23, 2017</span>
+                    </div>
+                    <div class="btn-group" role="group" aria-label="Basic example">
+                        <a href="{{ path('admin_ads_index') }}" class="btn btn-secondary tx-12">See all ads</a>
+                    </div>
+                </div><!-- card-header -->
+                <div class="card-body pd-0 bd-color-gray-lighter">
+                    <div class="table-responsive">
+                        <table class="table mg-b-0">
+                            <thead>
+                            <tr>
+                                <th>id</th>
+                                <th>Author</th>
+                                <th>Ad title</th>
+                                <th>Average</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% for ad in worstAds %}
+                                <tr>
+                                    <td>{{ ad.id }}</td>
+                                    <td><img class="avatar-badge rounded-circle mr-2" src="{{ ad.picture }}"
+                                             alt="" style="height: 35px">{{ ad.firstName }} {{ ad.lastName }}</td>
+                                    <td>{{ ad.title }}</td>
+                                    <td class="text-center">{{ ad.note | number_format('1', ',', ' ') }}</td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div><!-- card-body -->
+            </div><!-- card -->
+        </div><!-- row -->
+    {% endblock %}
 {% endblock %}

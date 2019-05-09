@@ -61,7 +61,7 @@ class Statistics
                 GROUP BY a
                 ORDER BY note ' . $direction
             )
-            ->setMaxResults(5)
+            ->setMaxResults(10)
             ->getResult();
     }
 

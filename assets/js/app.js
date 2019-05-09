@@ -6,9 +6,30 @@
  */
 
 // any CSS you require will output into a single css file (app.css in this case)
-require('../css/app.css');
+require('../scss/app.scss');
 
 // Need jQuery? Install it with "yarn add jquery", then uncomment to require it.
-// const $ = require('jquery');
+const $ = require('jquery');
+global.$ = global.jQuery = $;
 
-console.log('Hello Webpack Encore! Edit me in assets/js/app.js');
+require('bootstrap'); // Bootstrap Javascript (All)
+
+require('./ad.js');
+require('./chart.chartjs.js');
+require('./chart.flot.js');
+require('./chart.morris.js');
+require('./chart.rickshaw.js');
+require('./chart.sparkline.js');
+require('./dashboard.js');
+require('./jquery.vmap.sampledata.js');
+require('./map.apple.js');
+require('./map.bluewater.js');
+require('./map.mapbox.js');
+require('./map.shadesofgray.js');
+require('./map.shiftworker.js');
+require('./ResizeSensor.js');
+require('./starlight.js');
+require('./widgets.js');
+require('./bootstrap-datepicker.min.js');
+
+// console.log('Hello Webpack Encore! Edit me in assets/js/app.js');

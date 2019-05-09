@@ -3,55 +3,74 @@
 {% block title %}Edit booking number {{ booking.id }}{% endblock %}
 
 {% block body %}
-    <main class="u-main" role="main">
-        {% include 'admin/partials/sidebar.html.twig' %}
+    {% block content %}
+        <div class="card pd-20 pd-sm-40 mg-t-20">
+            <h6 class="card-body-title">Booking edit</h6>
+            <p class="mg-b-20 mg-sm-b-30">Edit booking number {{ booking.id }}</p>
+            {{ form_start(form) }}
+            <div class="form-layout">
+                <div class="row mg-b-25">
+                    <div class="col-lg-4">
+                        <div class="form-group">
+                            <i class="fal fa-user"></i>
+                            {{ form_label(form.booker) }}
+                            {{ form_widget(form.booker) }}
 
-        <div class="u-content">
-            <div class="u-body mt-5">
-                {% for label, messages in app.flashes %}
-                    <div class="alert alert-{{ label }} fade show align-items-center" role="alert">
-                        <i class="fa fa-check-circle alert-icon mr-3"></i>
-                        {% for message in messages %}
-                            {{ message | striptags }}
-                        {% endfor %}
-                        <button type="button" class="close" aria-label="Close" data-dismiss="alert">
-                            <span aria-hidden="true">×</span>
-                        </button>
-                    </div>
-                {% endfor %}
+                            <small>{{ form_help(form.booker) }}</small>
 
-                <div class="row">
-                    <div class="col">
-                        <div class="card">
-                            <header class="card-header">
-                                <h2 class="h3 card-header-title">Booking number {{ booking.id }} information</h2>
-                            </header>
-
-                            <div class="card-body">
-                                <span class="font-weight-bold">Booking linked at :</span> {{ booking.ad.title }}<br/>
-                                <span class="font-weight-bold">Author of this booking :</span> {{ booking.booker.fullName}}<br/>
-                                <span class="font-weight-bold">Booking date :</span> {{ booking.startDate | date('d/m/Y') }} at {{ booking.endDate | date('d/m/Y') }}<br/>
-                                <span class="font-weight-bold">Booking price :</span> {{ booking.amount }}<br/>
+                            <div class="form-error">
+                                {{ form_errors(form.booker) }}
                             </div>
                         </div>
-                    </div>
-                    <div class="col">
-                        <div class="card">
-                            <header class="card-header">
-                                <h2 class="h3 card-header-title">Edit comment</h2>
-                            </header>
-                            <div class="card-body">
-                                {{ form_start(form) }}
-                                {{ form_widget(form) }}
-                                <button type="submit" class="btn btn-primary">Save this booking</button>
-                                {{ form_end(form) }}
+                    </div><!-- col-4 -->
+                    <div class="col-lg-4">
+                        <div class="form-group">
+                            <i class="fa fa-calendar"></i>
+                            {{ form_label(form.startDate) }}
+                            {{ form_widget(form.startDate) }}
+
+                            <small>{{ form_help(form.startDate) }}</small>
+
+                            <div class="form-error">
+                                {{ form_errors(form.startDate) }}
                             </div>
                         </div>
-                    </div>
-                </div>
-            </div>
-            {% include 'admin/partials/footer.html.twig' %}
+                    </div><!-- col-4 -->
+                    <div class="col-lg-4">
+                        <div class="form-group">
+                            <i class="fa fa-calendar"></i>
+                            {{ form_label(form.endDate) }}
+                            {{ form_widget(form.endDate) }}
+
+                            <small>{{ form_help(form.endDate) }}</small>
+
+                            <div class="form-error">
+                                {{ form_errors(form.endDate) }}
+                            </div>
+                        </div>
+                    </div><!-- col-4 -->
+                    <div class="col-lg-12">
+                        <div class="form-group mg-b-10-force">
+                            {{ form_label(form.comment) }}
+                            {{ form_widget(form.comment) }}
+                            {{ form_errors(form.comment) }}
+                        </div>
+                    </div><!-- col-8 -->
+                    <div class="col-lg-12">
+                        <div class="form-group mg-b-10-force">
+                            {{ form_label(form.ad) }}
+                            {{ form_widget(form.ad) }}
+                            {{ form_errors(form.ad) }}
+                        </div>
+                    </div><!-- col-4 -->
+                </div><!-- row -->
+
+                <div class="form-layout-footer align-items-end">
+                    <button type="submit" class="btn btn-info">Save the ad</button>
+                </div><!-- form-layout-footer -->
+            </div><!-- form-layout -->
+            {{ form_end(form) }}
         </div>
-    </main>
+    {% endblock %}
 {% endblock %}
 
