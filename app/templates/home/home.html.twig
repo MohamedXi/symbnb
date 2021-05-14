@@ -1,0 +1,64 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Welcome to the best website of ads{% endblock %}
+
+{% block body %}
+    <div class="container-fluid p-0">
+        <!-- Best rent section-->
+        <div class="container-fluid py-xl-5">
+            <div class="container space-top-3 space-bottom-md-3 space-bottom-2">
+                <!-- Title row -->
+                <div class="w-md-80 w-lg-50 text-center">
+                    <span class="btn btn-xs btn-soft-success btn-pill mb-2">The popular ads</span>
+                    <h2>The best ads available</h2>
+                </div>
+                <div class="w-md-60 w-lg-50 text-center mx-auto">
+                    <h4 class="h5">
+                        Our hosts are waiting for you in atypical accommodations. </span>
+                    </h4>
+                </div>
+                <!-- End title row -->
+
+                <!-- Card row -->
+                <div class="row mt-5">
+                    {% for data in ads %}
+                        <div class="col-sm-4">
+                            {% include 'ad/_ad.html.twig' with {'ad': data.annonce} %}
+                        </div>
+                    {% endfor %}
+                </div>
+                <!-- Card row -->
+            </div>
+        </div>
+        <!-- End best rent -->
+
+        <!-- Best user section-->
+        <div class="container-fluid py-xl-5">
+            <div class="container space-top-3 space-bottom-md-3 space-bottom-2">
+                <!-- Title row -->
+                <div class="w-md-80 w-lg-50 text-center mx-md-auto mb-4">
+                    <span class="btn btn-xs btn-soft-success btn-pill mb-2">Popular hosts</span>
+                    <h2>The most rated hosts</h2>
+                </div>
+                <!-- End title row -->
+
+                <!-- Card row -->
+                <div class="card-columns">
+                    {% for data in users %}
+                        <a href="{{ path('user_show', {'slug': data.user.slug}) }}">
+                            <div class="card py-3 px-4">
+                                <img class="avatar rounded-circle mr-2 d-inline-block text-left" alt="Image placeholder"
+                                     src="{{ data.user.picture }}" style="height: 50px">
+                                <p class="card-text d-inline-block text-dark text-left">{{ data.user.fullName }}</p>
+                            </div>
+                        </a>
+                    {% endfor %}
+                </div>
+                <!-- Card row -->
+            </div>
+        </div>
+        <!-- End best user section -->
+
+
+    </div>
+{% endblock %}

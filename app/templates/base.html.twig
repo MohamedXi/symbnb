@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>{% block title %}Welcome!{% endblock %} | Symbnb</title>
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.8.1/css/all.css"
+          integrity="sha384-Bx4pytHkyTDy3aJKjGkGoHPt3tvv6zlwwjc3iqN7ktaiEMLDPqLSZYts2OjKcBx1" crossorigin="anonymous">
+    {% block stylesheets %}
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.8.0/css/bootstrap-datepicker.min.css" />
+        {{ encore_entry_link_tags('app') }}
+    {% endblock %}
+</head>
+<body>
+{# ------ navbar ------ #}
+<div class="container-fluid bg-light">
+    {% include 'partials/header.html.twig' %}
+</div>
+{% for label, messages in app.flashes %}
+    <div class="container py-5">
+        <div class="alert alert-{{ label }}">
+            {% for message in messages %}
+                <p>
+                    {{ message | striptags }}
+                </p>
+            {% endfor %}
+        </div>
+    </div>
+{% endfor %}
+{% block body %}{% endblock %}
+{% include 'partials/footer.html.twig' %}
+<script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+{% block javascripts %}
+    {{ encore_entry_script_tags('app') }}
+{% endblock %}
+</body>
+</html>

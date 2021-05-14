@@ -1,0 +1,33 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Our beautiful ads{% endblock %}
+
+{% block body %}
+    <div class="container-fluid">
+        <!-- Best rent section-->
+
+        <div class="container-fluid py-xl-5">
+            <div class="container space-top-3 space-bottom-md-3 space-bottom-2">
+                <!-- Title row -->
+                <div class="w-md-80 w-lg-50 text-center mx-md-auto">
+                    <span class="mb-2 h4 text-dark">Our available ads</span>
+                    <p class="text-dark">Deposit, consult and rent an apartment or house...</p>
+                </div>
+                <!-- End title row -->
+
+                    <!-- Card row -->
+                    <div class="row mt-5">
+                        {% for ad in ads %}
+
+                            {% set url = path('ads_show', {'slug': ad.slug}) %}
+                            <div class="col-sm-4">
+                                {% include 'ad/_ad.html.twig' %}
+                            </div>
+                        {% endfor %}
+                    </div>
+                    <!-- Card row -->
+            </div>
+        </div>
+        <!-- End best rent -->
+    </div>
+{% endblock %}

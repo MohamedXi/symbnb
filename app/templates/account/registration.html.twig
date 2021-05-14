@@ -1,0 +1,63 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Registration{% endblock %}
+
+
+{% block body %}
+    <div class="container py-5">
+        {{ form_start(form) }}
+        <div class="row g-3">
+            <div class="col-md-6 mb-3">
+                {{ form_label(form.firstName) }}
+                {{ form_widget(form.firstName) }}
+                {{ form_errors(form.firstName) }}
+            </div>
+            <div class="col-md-6 mb-3">
+                {{ form_label(form.lastName) }}
+                {{ form_widget(form.lastName) }}
+                {{ form_errors(form.lastName) }}
+            </div>
+            <div class="col-md-6 mb-3">
+                {{ form_label(form.picture) }}
+                {{ form_widget(form.picture) }}
+                {{ form_errors(form.picture) }}
+            </div>
+            <div class="col-md-6 mb-3">
+                {{ form_label(form.tel) }}
+                {{ form_widget(form.tel) }}
+                {{ form_errors(form.tel) }}
+            </div>
+            <div class="col-md-6 mb-3">
+                {{ form_label(form.email) }}
+                {{ form_widget(form.email) }}
+                {{ form_errors(form.email) }}
+            </div>
+            <div class="col-md-6 mb-3">
+                {{ form_label(form.hash) }}
+                {{ form_widget(form.hash) }}
+                {{ form_errors(form.hash) }}
+            </div>
+            <div class="col-md-6 mb-3">
+                {{ form_label(form.passwordConfirm) }}
+                {{ form_widget(form.passwordConfirm) }}
+                {{ form_errors(form.passwordConfirm) }}
+            </div>
+            <div class="col-md-6 mb-3">
+                {{ form_label(form.introduction) }}
+                {{ form_widget(form.introduction) }}
+                {{ form_errors(form.introduction) }}
+            </div>
+            <div class="col-md-12 mb-3">
+                {{ form_label(form.description) }}
+                {{ form_widget(form.description) }}
+                {{ form_errors(form.description) }}
+            </div>
+        </div>
+        {{ form_widget(form) }}
+        <button type="submit" class="btn btn-primary">Registration</button>
+        {{ form_end(form) }}
+    </div>
+{% endblock %}
+
+
+
