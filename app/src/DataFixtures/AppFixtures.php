@@ -39,11 +39,11 @@ class AppFixtures extends Fixture
 
         $adminUser = new User();
         $adminUser
-            ->setFirstName('Ismael')
-            ->setLastName('Mohamed')
+            ->setFirstName('Webmaster')
+            ->setLastName('Admin')
             ->setEmail('admin@symbnb.com')
             ->setTel($faker->phoneNumber)
-            ->setHash($this->userPasswordEncoder->encodePassword($adminUser, 'azerty'))
+            ->setHash($this->userPasswordEncoder->encodePassword($adminUser, 'password'))
             ->setIntroduction($faker->sentence())
             ->setDescription('<p>' . join('</p><p>', $faker->paragraphs(3)) . '</p>')
             ->setPicture('https://randomuser.me/api/portraits/lego/3.jpg')
